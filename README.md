@@ -6,10 +6,10 @@ Deze repo is gewijd aan de web app genaamd: Daanimos. Dit is een web app die geb
 ## Docs
 
 Dit zijn alle belangrijke documenten die van toepassing zijn voor dit project.
- - Debriefing - N/A
- - Planning - N/A
+ - [Debriefing](https://mediacollegeamsterdam.sharepoint.com/:w:/t/Daanimos/Ed6FdwW8JjNJrtoNUc0mq8IBUFQ-FkdYjtbzBihn2sgesg?e=6Cg3Dt)
+ - [Planning](https://mediacollegeamsterdam.sharepoint.com/:x:/t/Daanimos/EQIHeZmHmEBKpXIjUwQflJMBXgxmv6TuuTkIFA3NyqMBjQ?e=Dhb7Nz)
  - Ontwerp - N/A
- - Plan van aanpak - N/A
+ - [Projectplan](https://mediacollegeamsterdam.sharepoint.com/:w:/t/Daanimos/EWyR4hgImXVNi-jp8ZZnIpUBwgmxGI55OKbV2pcU3Cbf5A?e=rsSGQM)
  - Testrapport - N/A
 
 ## How to Run
@@ -19,12 +19,12 @@ Hoe run je dit project? Voor dit project zijn een paar requirements voordat je h
  - Node.js
  - Yarn
 
-    ```yarn```   
+    ```npm install```   
     ```node index.js```
 
 ## Contributors
 Iedereen die aan het project heeft gewerkt
 
- - Daan Korver - http://www.daankorver.com/
- - Tim Huijkman - http://www.timhuijkman.nl/
- - Rick Siepelinga - http://24585.hosts1.ma-cloud.nl/bewijzenmap/periode2.1/PMW/Blog/public/
+ - [Daan Korver](http://www.daankorver.com/)
+ - [Tim Huijkman](http://www.timhuijkman.nl/)
+ - [Rick Siepelinga](http://24585.hosts1.ma-cloud.nl/bewijzenmap/periode2.1/PMW/Blog/public/)
