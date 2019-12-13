@@ -15,12 +15,12 @@ Dit zijn alle belangrijke documenten die van toepassing zijn voor dit project.
 ## How to Run
 
 Hoe run je dit project? Voor dit project zijn een paar requirements voordat je het kan gebruiken.
+ Voor dit project heb je Expo nodig
+ Als je expo nog niet heb geinstalleerd kan dat [zo](https://docs.expo.io/versions/latest/get-started/installation/)
 
- - Node.js
- - Yarn
-
-    ```npm install```   
-    ```node index.js```
+    cd app
+    npm install
+    export start
 
 ## Contributors
 Iedereen die aan het project heeft gewerkt
