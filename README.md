@@ -20,7 +20,7 @@ Hoe run je dit project? Voor dit project zijn een paar requirements voordat je h
 
     cd app
     npm install
-    export start
+    expo start
 
 ## Contributors
 Iedereen die aan het project heeft gewerkt
