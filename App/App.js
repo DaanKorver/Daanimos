@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ImageBackground } from 'react-native';
+import Home from './components/Home'
 
 export default class DaanimosApp extends Component {
     state = { title: 'Hello world!' };
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <Text>{this.state.title}</Text>
-            </View>
+            <ImageBackground source={require("../App/assets/home.jpg")} style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <Home />
+          </ImageBackground>
         );
     }
 }
