@@ -13,9 +13,9 @@ class Home extends Component {
                             source={require('../assets/logo-w-alt.png')}
                         />
                         <div className="nav-holder">
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div><Image style={{width: "60%", height: "60%", resizeMode: 'contain'}} source={require('../assets/pizza-icon.png')} /></div>
+                            <div><Image style={{width: "60%", height: "60%", resizeMode: 'contain'}} source={require('../assets/drink-icon.png')} /></div>
+                            <div><Image style={{width: "60%", height: "60%", resizeMode: 'contain'}} source={require('../assets/plus-icon.png')} /></div>
                         </div>
                     </div>
                 </div>
