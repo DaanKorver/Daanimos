@@ -18,9 +18,20 @@ Hoe run je dit project? Voor dit project zijn een paar requirements voordat je h
  Voor dit project heb je Expo nodig
  Als je expo nog niet heb geinstalleerd kan dat [zo](https://docs.expo.io/versions/latest/get-started/installation/)
 
+first time run:
+
     cd app
     npm install
+
+werken aan de app:
+
+    cd app
     expo start
+    
+to change stying add a new terminal and do after running expo:
+
+    cd app
+    npm run scss
 
 ## Contributors
 Iedereen die aan het project heeft gewerkt
