@@ -1,6 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "scss": "node-sass --watch sass/main.scss App.css",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -9,6 +10,7 @@
   },
   "dependencies": {
     "expo": "^35.0.0",
+    "node-sass": "^4.13.1",
     "react": "16.8.3",
     "react-dom": "^16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",

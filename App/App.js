@@ -7,8 +7,8 @@ export default class DaanimosApp extends Component {
     render() {
         return (
             <ImageBackground source={require("../App/assets/home.jpg")} style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-            <Home />
-          </ImageBackground>
+             <Home />
+            </ImageBackground>
         );
     }
 }
