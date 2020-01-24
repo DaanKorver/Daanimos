@@ -1,19 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Pizza from './components/Pizza';
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+      <div>
+        <Pizza flavour="hawaii" price={10}></Pizza>
+        <Pizza flavour="Salami" price={7}></Pizza>
+        <Pizza flavour="Margarita" price={15}></Pizza>
+        <Pizza flavour="Nog iets" price={10}></Pizza>
+      </div>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
