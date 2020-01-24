@@ -25,12 +25,15 @@
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
-}
 
-.nav-holder > div {
-  width: 8vw;
-  height: 8vw;
-  background: $white;
-  border-radius: 50%;
-  margin: 0 30px;
+  > div{
+    width: 8vw;
+    height: 8vw;
+    background: white;
+    border-radius: 50%;
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
