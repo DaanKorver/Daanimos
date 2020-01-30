@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import { Image } from 'react-native';
 
 
 class Pizza extends Component {
-    state ={
+    state = {
         pizzaPrice: this.props.price,
         size: 'regular',
     }
