@@ -21,7 +21,10 @@ class Pizza extends Component {
     render() {
         return (
             <div>
-                <h2>Pizza {this.props.flavour}</h2>
+                <Image
+                    style={{width: 250, height: 250}}
+                    source={require('../assets/' + this.props.flavour + '.jpg')}
+                />
                 <h3>Prijs: ${this.state.pizzaPrice}</h3>
                 <h4>Grootte: {this.state.size}</h4>
                 <button onClick={() => this.changePrice(0, 'regular')}>Original</button>

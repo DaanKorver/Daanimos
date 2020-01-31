@@ -16,7 +16,7 @@ Dit zijn alle belangrijke documenten die van toepassing zijn voor dit project.
 
 Hoe run je dit project? Voor dit project zijn een paar requirements voordat je het kan gebruiken.
  Voor dit project heb je Expo nodig
- Als je expo nog niet heb geinstalleerd kan dat [zo](https://docs.expo.io/versions/latest/get-started/installation/)
+ Als je expo nog niet heb geinstalleerd kan dat [zo](npm://docs.expo.io/versions/latest/get-started/installation/)
 
     cd app
     npm install
