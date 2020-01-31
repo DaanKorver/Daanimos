@@ -5,7 +5,7 @@ import { styles } from '../AppStyle';
 class Home extends Component {
     render() {
         return (
-                <View>
+                <View style={styles.container}>
                     <Text style={styles.red}>Home</Text>
                 </View>
         );
