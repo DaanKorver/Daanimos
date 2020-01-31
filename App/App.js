@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, ImageBackground, Button, TouchableOpacity, StatusBar } from 'react-native';
 import Home from './components/Home'
-import Test from './components/test'
+import Drinks from './components/Drinks'
+import Extras from './components/Extras'
+import Pizza from './components/Pizza'
 import {styles} from './AppStyle';
 
 export default class DaanimosApp extends Component {
@@ -18,8 +20,12 @@ export default class DaanimosApp extends Component {
         switch(this.state.route) {
             case 'home':
                 return <Home/>;
-            case 'test':
-                return <Test/>;
+            case 'drinks':
+                return <Drinks/>;
+            case 'extras':
+                return <Extras/>;
+            case 'pizza':
+                return <Pizza/>;
             default:
             return ''
         }
@@ -40,8 +46,10 @@ export default class DaanimosApp extends Component {
                 <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                     {/* <Button style={styles.button} title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
                     <Button style={styles.button} title="home" onPress={()=>{this.setRoute("home")}}>home</Button> */}
-                    <TouchableOpacity onPress={()=>{this.setRoute("test")}}><Text style={styles.button}>Test</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.setRoute("home")}}><Text style={styles.button}>Home</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.setRoute("home")}}><Text style={styles.button}>Test</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.setRoute("drinks")}}><Text style={styles.button}>Drinks</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.setRoute("extras")}}><Text style={styles.button}>Extras</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.setRoute("pizza")}}><Text style={styles.button}>Pizza</Text></TouchableOpacity>
                 </View>
                 <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
                     <View style={styles.main}>

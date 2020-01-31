@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import {Image} from 'react-native';
-import {styles} from '../AppStyle';
 import {StyleSheet, Text, View} from 'react-native';
+import {styles} from '../AppStyle';
 
-class Home extends Component {
+class Pizza extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text class={styles.red}>Test</Text>
+                <Text style={styles.red}>Pizza</Text>
             </View>
         );
     }
 }
 
-export default Home;
+export default Pizza;
