@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ImageBackground } from 'react-native';
+import { Text, View, ImageBackground, Button } from 'react-native';
 import Home from './components/Home'
 import Test from './components/test'
 
@@ -32,8 +32,8 @@ export default class DaanimosApp extends Component {
     render() {
         return (
             <ImageBackground source={require("../App/assets/home.jpg")} style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-                <button onClick={()=>{this.setRoute("test")}}>test</button>
-                <button onClick={()=>{this.setRoute("home")}}>home</button>
+                <Button title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
+                <Button title="home" onPress={()=>{this.setRoute("home")}}>home</Button>
                 {this.getRoute()}
             </ImageBackground>
         );

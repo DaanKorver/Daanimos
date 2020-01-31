@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import {Image} from 'react-native';
-import { styles } from '../AppStyle';
 import { StyleSheet, Text, View } from 'react-native';
+import { styles } from '../AppStyle';
 
 class Home extends Component {
     render() {
         return (
-                <View class={styles.container}>
-                    <Text class={styles.red}>Home</Text>
+                <View>
+                    <Text style={styles.red}>Home</Text>
                 </View>
         );
     }
