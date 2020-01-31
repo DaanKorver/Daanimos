@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, ImageBackground, Button } from 'react-native';
 import Home from './components/Home'
 import Test from './components/test'
+import {styles} from './AppStyle';
 
 export default class DaanimosApp extends Component {
 
@@ -31,11 +32,17 @@ export default class DaanimosApp extends Component {
 
     render() {
         return (
-            <ImageBackground source={require("../App/assets/home.jpg")} style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-                <Button title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
-                <Button title="home" onPress={()=>{this.setRoute("home")}}>home</Button>
-                {this.getRoute()}
+            <View style={{flex: 1}}>
+                <View style={{flex: '0 0 100px', flexDirection: 'row', justifyContent: 'center'}}>
+                    <Button style={styles.button} title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
+                    <Button style={styles.button} title="home" onPress={()=>{this.setRoute("home")}}>home</Button>
+                </View>
+                <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
+                    <View style={styles.main}>
+                        {this.getRoute()}
+                    </View>
             </ImageBackground>
+            </View>
         );
     }
 }
