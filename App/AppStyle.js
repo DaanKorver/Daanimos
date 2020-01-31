@@ -4,8 +4,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 24,
-        backgroun
-        dColor: 'rgba(0,0,0,.2)'
+        backgroundColor: 'rgba(0,0,0,.2)'
     },
     red: {
         color: '#f00',
