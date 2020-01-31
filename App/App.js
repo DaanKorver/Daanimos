@@ -14,7 +14,14 @@ export default class DaanimosApp extends Component {
         this.setRoute = this.setRoute.bind(this);
     }
     getRoute(){
-        return this.state.route;
+        switch(this.state.route) {
+            case 'home':
+                return <Home/>;
+            case 'test':
+                return <Test/>;
+            default:
+            return ''
+        }
     }
     setRoute(routeName){
         this.setState({
@@ -27,11 +34,7 @@ export default class DaanimosApp extends Component {
             <ImageBackground source={require("../App/assets/home.jpg")} style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
                 <button onClick={()=>{this.setRoute("test")}}>test</button>
                 <button onClick={()=>{this.setRoute("home")}}>home</button>
-                {this.getRoute() ===
-                    'home' ? <Home/> :
-                    'test' ? <Test/> :
-                    ''
-                }
+                {this.getRoute()}
             </ImageBackground>
         );
     }
