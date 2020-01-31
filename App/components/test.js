@@ -6,8 +6,8 @@ import {StyleSheet, Text, View} from 'react-native';
 class Home extends Component {
     render() {
         return (
-            <View class={styles.container}>
-                <Text class={styles.red}>Test</Text>
+            <View style={styles.container}>
+                <Text style={styles.shadow}>Test</Text>
             </View>
         );
     }
