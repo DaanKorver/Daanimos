@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Image} from 'react-native';
-import { styles } from '../AppStyle';
 import { StyleSheet, Text, View } from 'react-native';
+import { styles } from '../AppStyle';
 
 class Home extends Component {
     render() {
