@@ -1,12 +1,13 @@
 import React from 'react';
-import Pizza from './components/Pizza';
+import ProductList from './components/ProductList';
+import { View } from 'react-native';
 
 
 export default function App() {
 
   return (
-      <div>
-        <Pizza flavour="pizza-salami" price={7}></Pizza>
-      </div>
+      <View>
+        <ProductList></ProductList>
+      </View>
   );
 }

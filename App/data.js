@@ -9,7 +9,7 @@ export const pizzas = [
     },
 ];
 
-export const detailPizza = {
+export const detail = {
     id: 1,
     type: "Hawaii",
     price: 10,
