@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ImageBackground, Button } from 'react-native';
+import { Text, View, ImageBackground, Button, TouchableOpacity, StatusBar } from 'react-native';
 import Home from './components/Home'
 import Test from './components/test'
 import {styles} from './AppStyle';
@@ -30,12 +30,18 @@ export default class DaanimosApp extends Component {
         });
     }
 
+    componentDidMount() {
+        StatusBar.setHidden(true);
+     }
+
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: '0 0 100px', flexDirection: 'row', justifyContent: 'center'}}>
-                    <Button style={styles.button} title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
-                    <Button style={styles.button} title="home" onPress={()=>{this.setRoute("home")}}>home</Button>
+                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                    {/* <Button style={styles.button} title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
+                    <Button style={styles.button} title="home" onPress={()=>{this.setRoute("home")}}>home</Button> */}
+                    <TouchableOpacity onPress={()=>{this.setRoute("test")}}><Text style={styles.button}>Test</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.setRoute("home")}}><Text style={styles.button}>Home</Text></TouchableOpacity>
                 </View>
                 <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
                     <View style={styles.main}>

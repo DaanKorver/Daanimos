@@ -18,7 +18,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd'
     },
     button: {
-        margin: 6,
+        textTransform: 'uppercase',
+        color: 'red',
+        padding: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        backgroundColor: "#ff0"
     }
 });
 
