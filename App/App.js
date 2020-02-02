@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, ImageBackground, Button, TouchableOpacity, StatusBar} from 'react-native';
 import Home from './components/Home'
 import Drinks from './components/Drinks'
+import Connect from './components/Connect'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
 import {styles} from './AppStyle';
@@ -11,17 +12,18 @@ export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'waiting', price: 0};
+        this.state = {route: 'connect', price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
         this.setRoute = this.setRoute.bind(this);
+        this.makeSocket = this.makeSocket.bind(this);
     }
 
     getRoute() {
         switch (this.state.route) {
-            case 'waiting':
-                return <Text>Waiting for connection</Text>;
+            case 'connect':
+                return <Connect makeSocket={this.makeSocket} />;
             case 'home':
                 return <Home setRoute={this.setRoute}/>;
             case 'drinks':
@@ -41,13 +43,19 @@ export default class DaanimosApp extends Component {
         });
     }
 
-    componentDidMount() {
-        StatusBar.setHidden(true);
+    makeSocket(uri){
+        this.socket = new io(uri);
 
-        this.socket = io('http://192.168.178.130:3000/');
         this.socket.on("connect", () => {
             this.setRoute("home");
         });
+    }
+
+    componentDidMount() {
+        StatusBar.setHidden(true);
+
+        // this.makeSocket('http://192.168.178.129:3000/');
+
     }
 
     render() {
