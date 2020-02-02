@@ -19,7 +19,7 @@ export default class DaanimosApp extends Component {
     getRoute(){
         switch(this.state.route) {
             case 'home':
-                return <Home/>;
+                return <Home setRoute={this.setRoute}/>;
             case 'drinks':
                 return <Drinks/>;
             case 'extras':
@@ -46,10 +46,7 @@ export default class DaanimosApp extends Component {
                 <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                     {/* <Button style={styles.button} title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
                     <Button style={styles.button} title="home" onPress={()=>{this.setRoute("home")}}>home</Button> */}
-                    <TouchableOpacity onPress={()=>{this.setRoute("home")}}><Text style={styles.button}>Test</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.setRoute("drinks")}}><Text style={styles.button}>Drinks</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.setRoute("extras")}}><Text style={styles.button}>Extras</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.setRoute("pizza")}}><Text style={styles.button}>Pizza</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.setRoute("home")}}><Text style={styles.button}>Home</Text></TouchableOpacity>
                 </View>
                 <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
                     <View style={styles.main}>

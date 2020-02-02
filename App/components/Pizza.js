@@ -7,6 +7,7 @@ class Pizza extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.red}>Pizza</Text>
+                {/*Rick Pizza form goes here (you can remove the title ofcourse)*/}
             </View>
         );
     }
