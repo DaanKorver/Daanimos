@@ -1,41 +1,32 @@
 import React, {Component} from 'react';
-import {pizzaConsumer} from "../context";
-import PropTypes from 'prop-types';
+import {ProductConsumer} from "../context";
+import { Text, View, Button } from 'react-native';
 
 class Product extends Component {
     render() {
-        const {id, title, price, inCart} = this.props.pizza;
+        const {id, type, price, inCart} = this.props.product;
         return (
-            <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
-                <div className="card">
-                    <pizzaConsumer>
+                <View className="card">
+                    <ProductConsumer>
                         {(value) => (
-                            <div className="img-container p-5" onClick={() => value.handleDetail(id)}>
-                                <button className="cart-btn" disabled={inCart ? true:false} onClick={
+                            <View className="img-container p-5" onPress={() => value.handleDetail(id)}>
+                                <Button title="Press me" className="cart-btn" disabled={inCart ? true:false} onPress={
                                     () => {value.addToCart(id);}
                                 }>
-                                    {inCart?(<p className="text-capitalize mb-0" disabled>In cart</p>):(
+                                    {inCart?(<Text className="text-capitalize mb-0" disabled>In cart</Text>):(
                                         <i className="fas fa-cart-plus"/>)}
-                                </button>
-                                <Text></Text>
-                            </div>
+                                </Button>
+
+                            </View>
                         )}
-                    </pizzaConsumer>
-                </div>
-            </ProductWrapper>
+                    </ProductConsumer>
+                    <Text>{type}</Text>
+                    <Text>{price}</Text>
+                    <Text>{inCart}</Text>
+                </View>
         );
     }
 }
-
-Product.propTypes = {
-    product:PropTypes.shape({
-        id:PropTypes.number,
-        img:PropTypes.string,
-        title:PropTypes.string,
-        price:PropTypes.number,
-        inCart:PropTypes.bool,
-    }).isRequired
-};
 
 
 export default Product;

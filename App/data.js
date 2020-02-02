@@ -7,9 +7,17 @@ export const pizzas = [
         count: 0,
         total: 0
     },
+    {
+        id: 2,
+        type: "Salami",
+        price: 10,
+        inCart: false,
+        count: 0,
+        total: 0
+    },
 ];
 
-export const detail = {
+export const detailPizza = {
     id: 1,
     type: "Hawaii",
     price: 10,

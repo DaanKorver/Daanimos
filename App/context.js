@@ -1,67 +1,79 @@
 import React, {Component} from 'react';
-import {pizzas, detailPizza, detail} from "./data";
+import {pizzas, detailPizza} from "./data";
 
-const pizzaContext = React.createContext();
+const ProductContext = React.createContext();
 //provider
 //consumer
 
-class pizzaProvider extends Component {
+class ProductProvider extends Component {
     state ={
-        pizzas:[],
-        detail:detail,
+        products:[],
+        detailProduct:detailPizza,
         cart: [],
         cartSubTotal: 0,
+        cartTax: 0,
         cartTotal: 0,
     };
     componentDidMount(){
-        this.setpizzas();
+        this.setProducts();
     };
-    setpizzas = () => {
-        let temppizzas = [];
-        pizza.forEach(item => {
+    setProducts = () => {
+        let tempProducts = [];
+        pizzas.forEach(item => {
             const singleItem = {...item};
-            temppizzas = [...temppizzas,singleItem];
+            tempProducts = [...tempProducts,singleItem];
 
         });
         this.setState(()=>{
-            return {pizzas: temppizzas};
+            return {products: tempProducts};
         })
     };
 
     getItem = (id) =>{
-        const pizza = this.state.pizzas.find(item => item.id ===id);
-        return pizza;
+        const product = this.state.products.find(item => item.id ===id);
+        return product;
     }
 
     handleDetail = (id) => {
-        const pizza = this.getItem(id);
+        const product = this.getItem(id);
         this.setState(()=>{
-            return {detailPizza:pizza};
+            return {detailPizza:product};
         })
     };
     addToCart = (id) => {
-        let temppizzas = [...this.state.pizzas];
-        const index = temppizzas.indexOf(this.getItem(id));
-        const pizza = temppizzas[index];
-        pizza.inCart = true;
-        pizza.count = 1;
-        const price = pizza.price;
-        pizza.total = price;
+        let tempProducts = [...this.state.products];
+        const index = tempProducts.indexOf(this.getItem(id));
+        const product = tempProducts[index];
+        product.inCart = true;
+        product.count = 1;
+        const price = product.price;
+        product.total = price;
         this.setState(() => {
-            return {pizzas:temppizzas,cart:[...this.state.cart,pizza] };
+            return {products:tempProducts,cart:[...this.state.cart,product] };
         },()=>{
             this.addTotals();
         });
     };
+    openModal = id =>{
+        const product = this.getItem(id);
+        this.setState(()=>{
+            return{modalProduct:product,modalOpen:true}
+        })
+    }
+    closeModal = () => {
+        this.setState(()=>{
+            return {modalOpen:false};
+        });
+    };
     increment = (id) => {
         let tempCart = [...this.state.cart];
-        const selectedPizza = tempCart.find(item=>item.id === id)
+        const selectedProduct = tempCart.find(item=>item.id === id)
 
-        const index = tempCart.indexOf(selectedPizza);
-        const pizza = tempCart[index];
+        const index = tempCart.indexOf(selectedProduct);
+        const product = tempCart[index];
 
-        pizza.count = pizza.count + 1;
-        pizza.total = pizza.count * pizza.price;
+        product.count = product.count + 1;
+        product.total = product.count * product.price;
 
         this.setState(() => {return{cart:[...tempCart]}},
             ()=>{
@@ -71,17 +83,17 @@ class pizzaProvider extends Component {
     };
     decrement = (id) => {
         let tempCart = [...this.state.cart];
-        const selectedPizza = tempCart.find(item=>item.id === id)
+        const selectedProduct = tempCart.find(item=>item.id === id)
 
-        const index = tempCart.indexOf(selectedPizza);
-        const pizza = tempCart[index];
-        pizza.count = pizza.count -1;
+        const index = tempCart.indexOf(selectedProduct);
+        const product = tempCart[index];
+        product.count = product.count -1;
 
-        if(pizza.count === 0){
+        if(product.count === 0){
             this.removeItem(id)
         }
         else {
-            pizza.total = pizza.count * pizza.price;
+            product.total = product.count * product.price;
 
             this.setState(() => {return{cart:[...tempCart]}},
                 ()=>{
@@ -90,21 +102,21 @@ class pizzaProvider extends Component {
         }
     };
     removeItem = (id) => {
-        let temppizzas = [...this.state.pizzas];
+        let tempProducts = [...this.state.products];
         let tempCart = [...this.state.cart];
 
         tempCart = tempCart.filter(item => item.id !== id);
 
-        const index = temppizzas.indexOf(this.getItem(id))
-        let removedpizza = temppizzas[index];
-        removedpizza.inCart = false;
-        removedpizza.count = 0;
-        removedpizza.total = 0;
+        const index = tempProducts.indexOf(this.getItem(id))
+        let removedProduct = tempProducts[index];
+        removedProduct.inCart = false;
+        removedProduct.count = 0;
+        removedProduct.total = 0;
 
         this.setState(()=>{
             return{
                 cart:[...tempCart],
-                pizzas:[...temppizzas]
+                products:[...tempProducts]
             }
         }, ()=> {
             this.addTotals();
@@ -114,7 +126,7 @@ class pizzaProvider extends Component {
         this.setState(()=>{
             return { cart: [] };
         }, ()=>{
-            this.setpizzas();
+            this.setProducts();
             this.addTotals();
         });
     };
@@ -135,21 +147,23 @@ class pizzaProvider extends Component {
 
     render() {
         return (
-            <pizzaContext.Provider value={{
+            <ProductContext.Provider value={{
                 ...this.state,
                 handleDetail:this.handleDetail,
                 addToCart:this.addToCart,
+                openModal: this.openModal,
+                closeModal: this.closeModal,
                 increment:this.increment,
                 decrement: this.decrement,
                 removeItem: this.removeItem,
                 clearCart: this.clearCart,
             }}>
                 {this.props.children}
-            </pizzaContext.Provider>
+            </ProductContext.Provider>
         );
     }
 }
 
-const pizzaConsumer = pizzaContext.Consumer;
+const ProductConsumer = ProductContext.Consumer;
 
-export {pizzaProvider,pizzaConsumer};
+export {ProductProvider,ProductConsumer};

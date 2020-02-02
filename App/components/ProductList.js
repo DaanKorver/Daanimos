@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Product from './Product';
 import {pizzas} from "../data";
-import {pizzaConsumer} from "../context";
+import {ProductProvider, ProductConsumer} from "../context";
 import { View } from 'react-native';
 
 class ProductList extends Component {
-    state={
+    state = {
         products: pizzas
     }
     render() {
@@ -14,14 +14,14 @@ class ProductList extends Component {
                 <View className="py-5">
                     <View className="container">
                         <View className="row">
-                            <pizzaConsumer>
-                                {value => {
-                                    return value.products.map( product =>{
-                                        return <Product key={product.id} product={product}
-                                        />
-                                    })
-                                }}
-                            </pizzaConsumer>
+                            <ProductConsumer>
+                                    {value => {
+                                        return this.state.products.map( product =>{
+                                            return <Product key={product.id} product={product}
+                                            />
+                                        })
+                                    }}
+                            </ProductConsumer>
                         </View>
                     </View>
                 </View>
