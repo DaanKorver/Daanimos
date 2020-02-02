@@ -11,7 +11,7 @@ export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'home', price: 0};
+        this.state = {route: 'waiting', price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
@@ -20,6 +20,8 @@ export default class DaanimosApp extends Component {
 
     getRoute() {
         switch (this.state.route) {
+            case 'waiting':
+                return <Text>Waiting for connection</Text>;
             case 'home':
                 return <Home setRoute={this.setRoute}/>;
             case 'drinks':
@@ -42,11 +44,9 @@ export default class DaanimosApp extends Component {
     componentDidMount() {
         StatusBar.setHidden(true);
 
-        this.socket = io('http://192.168.56.1:3000/');
+        this.socket = io('http://192.168.178.130:3000/');
         this.socket.on("connect", () => {
-
-            console.log('NICE');
-            this.setRoute("pizza");
+            this.setRoute("home");
         });
     }
 
