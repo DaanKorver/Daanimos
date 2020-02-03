@@ -10,7 +10,9 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "landscape",
+    "primaryColor": "#006491",
+    "backgroundColor": "#006491",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash-icon.png",
