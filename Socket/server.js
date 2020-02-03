@@ -3,9 +3,8 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-const PORT = process.env.PORT || 3000;
 
-server.listen(PORT);
+server.listen(3000);
 
 // Create a Socket.IO instance, passing it our server
 var socket = io.listen(server);

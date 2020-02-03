@@ -7,21 +7,19 @@ import {RNCamera} from 'react-native-camera';
 class Connect extends Component {
     constructor(props) {
         super(props);
-        this.state = {cameraPermission: false, uri: 'http://172.16.2.241:3000/'};
-        this.getCameraPermision = getCameraPermision;
+        this.state = {cameraPermission: false, uri: 'http://192.168.178.129:3000/'};
     }
 
     componentDidMount() {
-        this.setState({cameraPermission: this.getCameraPermision()})
+        setInterval(getCameraPermision, 10000)
+        this.setState({cameraPermission: getCameraPermision()})
     }
-
-
 
 
     render() {
         return (
             <View style={styles.container}>
-                {this.state.cameraPermission !== true ? <RNCamera
+                {this.state.cameraPermission === true ? <RNCamera
                     ref={ref => {
                         this.camera = ref;
                     }}
@@ -33,7 +31,7 @@ class Connect extends Component {
                 </RNCamera> : null}
                 <Text>{this.state.uri}</Text>
                 <TouchableOpacity onPress={() => {
-                    this.props.makeSocket(this.state.uri)
+                    this.props.makeSocket('http://192.168.178.129:3000/')
                 }}><Text style={styles.button}>Connect</Text></TouchableOpacity>
             </View>
         );
@@ -41,11 +39,12 @@ class Connect extends Component {
 }
 
 async function getCameraPermision(){
-    const {status, permissions} = await Permissions.askAsync(Permissions.CAMERA);
+    // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
+    let {status, permissions} = await Permissions.askAsync(Permissions.CAMERA);
     if (status === 'granted') {
         return true
     } else {
-        return false
+        throw new Error('Camera permission not granted');
     }
 }
 
