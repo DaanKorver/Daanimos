@@ -6,8 +6,49 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
- <h1>Socket Site Test!</h1>
+<div id="loader"></div>
+<div id="login" class="hidden">
+     <span>
+     <label for="username">username:</label>
+         <input type="text" id="username">
+     </span>
+    <span>
+     <label for="password">username:</label>
+        <input type="password" id="password">
+     </span>
+    <button id="loginBtn">Login</button>
+</div>
+<div id="main" class="hidden">
+    <div class="grid" id="holder">
+
+    </div>
+</div>
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io(window.location.origin);
+    socket.on('connect', () => {
+        // loader switches to login
+        document.getElementById('loader').classList.add('hidden');
+        document.getElementById('login').classList.remove('hidden');
+
+        document.getElementById('loginBtn').addEventListener("click", function () {
+            socket.emit('send login', {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            });
+        });
+
+        socket.on('login', (isLoggedIn) => {
+            console.log(isLoggedIn);
+            if (isLoggedIn) {
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('main').classList.remove('hidden');
+            }
+        })
+    })
+</script>
 </html>

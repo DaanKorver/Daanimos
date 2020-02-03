@@ -3,8 +3,11 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+let login = {username: 'admin', password: '123'};
 
 server.listen(3000);
+
+app.use(express.static('.'));
 
 // Create a Socket.IO instance, passing it our server
 var socket = io.listen(server);
@@ -12,10 +15,12 @@ var socket = io.listen(server);
 // Add a connect listener
 socket.on('connection', function (client) {
     console.log("CONNECT:",client.id);
-    // Success!  Now listen to messages to be received
-    client.on('message', function (event) {
-        console.log('Received message from client!', event);
+
+    client.on('send login', function (data) {
+        console.log(login, data)
+            socket.to(client.id).emit('login', (data.username === login.username))
     });
+
     client.on('disconnect', function () {
         // clearInterval(interval);
         console.log("DISCONNENT",client.id);

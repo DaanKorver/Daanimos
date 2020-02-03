@@ -1,0 +1,15 @@
+$blue: #006491;
+$red: #e31837;
+$white: #fff;
+$padding: 8px;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,500&display=swap');
+
+body {
+  background: $blue;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+}
+.hidden {
+  display: none;
+}
