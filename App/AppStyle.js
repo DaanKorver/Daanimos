@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: '100%',
-        backgroundColor: '#ddd'
+        backgroundColor: '#dddddd55'
     },
     button: {
         textTransform: 'uppercase',

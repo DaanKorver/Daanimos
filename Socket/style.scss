@@ -59,6 +59,13 @@ ul {
     flex: 7;
     padding-right: $padding;
     .item{
+      position: relative;
+      .price{
+        position: absolute;
+        right: 0;
+        padding: 0 $padding;
+
+      }
       background: #eee;
       padding: $padding;
       &:not(:last-child){

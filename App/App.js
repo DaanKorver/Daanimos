@@ -53,9 +53,6 @@ export default class DaanimosApp extends Component {
 
     componentDidMount() {
         StatusBar.setHidden(true);
-
-        // this.makeSocket('http://192.168.178.129:3000/');
-
     }
 
     render() {

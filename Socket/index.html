@@ -114,6 +114,7 @@
         // document.getElementById('queue').innerHTML = "";
         for (let i = 0; i < data.queue.length; i++) {
             let item = document.createElement('div');
+            let total = 0;
             item.classList.add('item');
             if (!data.queue[i].isOpen) {
                 item.classList.add('closed');
@@ -130,8 +131,9 @@
                 product.appendChild(productTitle);
                 let productPrice = document.createElement('span');
                 productPrice.classList.add('price');
+                total += data.queue[i].order[ii].price;
 
-                // turns 8,5 into "€ 8,50" (example)
+                // turns 8.5 into "€ 8,50" (example)
                 productPrice.innerText = getPriceString(data.queue[i].order[ii].price);
                 productTitle.appendChild(productPrice);
                 itemList.appendChild(product);
@@ -146,16 +148,18 @@
 
                     let extraItemPrice = document.createElement('span');
                     extraItemPrice.classList.add('price');
+                    total += extras[iii].price;
 
-                    // turns 8,5 into "+ € 8,50" (example)
-                    extraItemPrice.innerText = "+ " + getPriceString(data.queue[i].order[ii].price);
+                    // turns 12.5 into "+ € 12,50" (example)
+                    extraItemPrice.innerText = "+ " + getPriceString(extras[iii].price);
                     extraTitle.appendChild(extraItemPrice);
                     extraList.appendChild(extraTitle);
                 }
 
             }
-            item.appendChild(itemList);
 
+            item.appendChild(itemList);
+            item.innerHTML += "<div class\"total\">Total:<span class=\"price\">"+ getPriceString(total) +"</span></div>"
             document.getElementById('queue').appendChild(item);
         }
     }

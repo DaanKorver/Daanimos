@@ -44,8 +44,13 @@ ul {
     flex: 7;
     padding-right: 32px; }
     #main:not(.hidden) #queue .item {
+      position: relative;
       background: #eee;
       padding: 32px; }
+      #main:not(.hidden) #queue .item .price {
+        position: absolute;
+        right: 0;
+        padding: 0 32px; }
       #main:not(.hidden) #queue .item:not(:last-child) {
         margin-bottom: 32px; }
       #main:not(.hidden) #queue .item:not(:first-child) {
