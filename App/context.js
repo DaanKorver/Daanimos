@@ -8,10 +8,7 @@ const ProductContext = React.createContext();
 class ProductProvider extends Component {
     state ={
         products:[],
-        detailProduct:detailPizza,
         cart: [],
-        cartSubTotal: 0,
-        cartTax: 0,
         cartTotal: 0,
     };
     componentDidMount(){
@@ -52,17 +49,6 @@ class ProductProvider extends Component {
             return {products:tempProducts,cart:[...this.state.cart,product] };
         },()=>{
             this.addTotals();
-        });
-    };
-    openModal = id =>{
-        const product = this.getItem(id);
-        this.setState(()=>{
-            return{modalProduct:product,modalOpen:true}
-        })
-    }
-    closeModal = () => {
-        this.setState(()=>{
-            return {modalOpen:false};
         });
     };
     increment = (id) => {
@@ -133,14 +119,9 @@ class ProductProvider extends Component {
     addTotals = () =>{
         let subTotal = 0;
         this.state.cart.map(item => (subTotal += item.total));
-        const tempTax = subTotal * 0.21;
-        const tax = parseFloat(tempTax.toFixed(1));
-        const total = subTotal + tax;
         this.setState(() => {
             return{
-                cartSubTotal: subTotal,
-                cartTax: tax,
-                cartTotal: total
+                cartTotal: subTotal
             };
         });
     };
@@ -151,8 +132,6 @@ class ProductProvider extends Component {
                 ...this.state,
                 handleDetail:this.handleDetail,
                 addToCart:this.addToCart,
-                openModal: this.openModal,
-                closeModal: this.closeModal,
                 increment:this.increment,
                 decrement: this.decrement,
                 removeItem: this.removeItem,

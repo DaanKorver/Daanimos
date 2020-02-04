@@ -3,6 +3,9 @@ import Product from './Product';
 import {pizzas} from "../data";
 import {ProductProvider, ProductConsumer} from "../context";
 import { View } from 'react-native';
+import CartTotals from "./Cart/CartTotals";
+import CartList from "./Cart/CartList";
+import CartItem from "./Cart/CartItem";
 
 class ProductList extends Component {
     state = {
@@ -21,6 +24,16 @@ class ProductList extends Component {
                                             />
                                         })
                                     }}
+                            </ProductConsumer>
+                            <ProductConsumer>
+                                {value => {
+                                    return <CartList value={value}></CartList>
+                                }}
+                            </ProductConsumer>
+                            <ProductConsumer>
+                                {value => {
+                                    return <CartTotals value={value}></CartTotals>
+                                }}
                             </ProductConsumer>
                         </View>
                     </View>
