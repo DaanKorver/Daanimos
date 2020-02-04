@@ -14,20 +14,21 @@ var socket = io.listen(server);
 
 // Add a connect listener
 socket.on('connection', function (client) {
-    console.log("CONNECT:",client.id);
+    console.log("CONNECT:", client.id);
 
     client.on('send login', function (data) {
-        console.log(login, data)
-            socket.to(client.id).emit('login', (data.username === login.username))
+        console.log(login, data);
+        // Poor login system for demo purposes
+        socket.to(client.id).emit('login', (login.username === data.username && login.password === data.password))
     });
 
     client.on('disconnect', function () {
         // clearInterval(interval);
-        console.log("DISCONNENT",client.id);
+        console.log("DISCONNENT", client.id);
     });
 
 });
 
-app.get('/', function(req, res,next) {
+app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/index.html');
 });

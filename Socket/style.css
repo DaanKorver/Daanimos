@@ -1,10 +1,63 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,500&display=swap");
 body {
   background: #006491;
+  margin: 0;
   font-weight: 300;
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; }
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  position: absolute;
+  width: 50%;
+  right: 0;
+  padding: 32px; }
+  header h1 {
+    padding: 32px; }
+  header img {
+    max-height: 100%;
+    width: auto; }
+
+ul {
+  list-style: none;
+  padding: 0; }
+
+.holder {
+  flex: 1;
+  background: #fff;
+  padding: 32px;
+  margin: 32px;
+  margin-top: 96px; }
 
 .hidden {
   display: none; }
+
+#main:not(.hidden) {
+  display: flex;
+  border: dashed 1px black; }
+  #main:not(.hidden) #queue {
+    flex: 7;
+    padding-right: 32px; }
+    #main:not(.hidden) #queue .item {
+      background: #eee;
+      padding: 32px; }
+      #main:not(.hidden) #queue .item:not(:last-child) {
+        margin-bottom: 32px; }
+      #main:not(.hidden) #queue .item:not(:first-child) {
+        margin-top: 32px; }
+  #main:not(.hidden) #status {
+    flex: 2 0 250px; }
+    #main:not(.hidden) #status > div {
+      background: #eee;
+      padding: 32px; }
+      #main:not(.hidden) #status > div:not(:last-child) {
+        margin-bottom: 32px; }
+      #main:not(.hidden) #status > div:not(:first-child) {
+        margin-top: 32px; }
 
 /*# sourceMappingURL=style.css.map */

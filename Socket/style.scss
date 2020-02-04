@@ -1,15 +1,86 @@
 $blue: #006491;
 $red: #e31837;
 $white: #fff;
-$padding: 8px;
+$padding: 32px;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,500&display=swap');
 
 body {
   background: $blue;
+  margin: 0;
   font-weight: 300;
   font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  position: absolute;
+  width: 50%;
+  right: 0;
+  padding: $padding;
+
+  h1 {
+    padding: $padding;
+  }
+
+  img {
+    max-height: 100%;
+    width: auto;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.holder {
+  flex: 1;
+  background: $white;
+  padding: $padding;
+  margin: $padding;
+  margin-top: $padding * 3;
+}
+
 .hidden {
   display: none;
+}
+
+#main:not(.hidden) {
+  display: flex;
+  border: dashed 1px black;
+  #queue {
+    flex: 7;
+    padding-right: $padding;
+    .item{
+      background: #eee;
+      padding: $padding;
+      &:not(:last-child){
+        margin-bottom: $padding;
+      }
+      &:not(:first-child){
+        margin-top: $padding;
+      }
+    }
+  }
+
+  #status {
+    flex: 2 0 250px;
+    > div {
+      background: #eee;
+      padding: $padding;
+      &:not(:last-child){
+        margin-bottom: $padding;
+      }
+      &:not(:first-child){
+        margin-top: $padding;
+      }
+    }
+  }
 }
