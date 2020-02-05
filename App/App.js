@@ -58,7 +58,7 @@ export default class DaanimosApp extends Component {
                         </View>
                 </ImageBackground>
                 </View>
-            <ProductProvider>
+            </ProductProvider>
         );
     }
 }
