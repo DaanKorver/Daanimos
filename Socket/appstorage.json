@@ -1,78 +1,148 @@
 {
-  "queue": [
+  "orders": [
     {
       "table": 1,
-      "order": [
+      "status": 3,
+      "items": [
         {
-          "name": "Pizza Hawaii",
-          "price": 8.5,
-          "extras": [
+          "type" : "pizza",
+          "name" : "hawaii",
+          "price" : 8.0,
+          "ingredientsUsed": [
+            {"pizzaDough" : 1},
+            {"ham" : 2},
+            {"cheese" : 0.2},
+            {"pineapple" : 0.5}
+          ],
+          "extra": [
             {
-              "name": "big",
-              "price": 2
-            },
-            {
-              "name": "extra cheese",
-              "price": 1
+              "name" : "extra cheese",
+              "price" : 1.5,
+              "extraIngredient" : {"cheese" : 0.2}
             }
           ]
         },
         {
-          "name": "Pizza Salami",
-          "price": 8,
-          "extras": [
+          "type" : "drink",
+          "name" : "coke",
+          "price" : 2.5,
+          "ingredientsUsed": [
+            {"coke" : 0.33}
+          ],
+          "extra": [
             {
-              "name": "cheese crust",
-              "price": 2.5
+              "name" : "big",
+              "price" : 0.75,
+              "extraIngredient" : {"coke" : 0.22}
             }
           ]
         }
-      ],
-      "isOpen": true
+      ]
     },
     {
       "table": 2,
-      "order": [
+      "status": 1,
+      "items": [
         {
-          "name": "Pizza Hawaii",
-          "price": 8.5,
-          "extras": [
+          "type" : "pizza",
+          "name" : "hawaii",
+          "price" : 8.0,
+          "ingredientsUsed": [
+            {"pizzaDough" : 1},
+            {"ham" : 2},
+            {"cheese" : 0.2},
+            {"pineapple" : 0.5}
+          ],
+          "extra": [
             {
-              "name": "big",
-              "price": 2
-            },
-            {
-              "name": "extra cheese",
-              "price": 1
+              "name" : "extra cheese",
+              "price" : 1.5,
+              "extraIngredient" : {"cheese" : 0.2}
             }
           ]
         },
         {
-          "name": "Pizza Salami",
-          "price": 8,
-          "extras": [
+          "type" : "drink",
+          "name" : "coke",
+          "price" : 2.5,
+          "ingredientsUsed": [
+            {"coke" : 0.33}
+          ],
+          "extra": [
             {
-              "name": "cheese crust",
-              "price": 2.5
+              "name" : "big",
+              "price" : 0.75,
+              "extraIngredient" : {"coke" : 0.22}
             }
           ]
         }
-      ],
-      "isOpen": false
-    }
-  ],
-  "status": [
-    {
-      "table": 1,
-      "status": 2
-    },
-    {
-      "table": 2,
-      "status": 1
+      ]
     },
     {
       "table": 3,
-      "status": 0
+      "status": 0,
+      "items": [
+        {
+          "type" : "pizza",
+          "name" : "hawaii",
+          "price" : 8.0,
+          "ingredientsUsed": [
+            {"pizzaDough" : 1},
+            {"ham" : 2},
+            {"cheese" : 0.2},
+            {"pineapple" : 0.5}
+          ],
+          "extra": [
+            {
+              "name" : "extra cheese",
+              "price" : 1.5,
+              "extraIngredient" : {"cheese" : 0.2}
+            }
+          ]
+        },
+        {
+          "type" : "drink",
+          "name" : "coke",
+          "price" : 2.5,
+          "ingredientsUsed": [
+            {"coke" : 0.33}
+          ],
+          "extra": [
+            {
+              "name" : "big",
+              "price" : 0.75,
+              "extraIngredient" : {"coke" : 0.22}
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "pizzaDough",
+      "amount": 842,
+      "identifier": "piece(s)"
+    },
+    {
+      "name": "ham",
+      "amount": 328,
+      "identifier": "slice(s)"
+    },
+    {
+      "name": "cheese",
+      "amount": 83,
+      "identifier": "kg"
+    },
+    {
+      "name": "pineapple",
+      "amount": 32,
+      "identifier": "cans"
+    },
+    {
+      "name": "coke",
+      "amount": 34,
+      "identifier": "liters"
     }
   ]
 }

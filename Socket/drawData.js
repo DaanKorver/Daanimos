@@ -62,6 +62,7 @@ function drawQueue(queue) {
             let extras = queue[i].order[ii].extras;
             let extraList = document.createElement('ul');
             extraList.classList.add('extras');
+            console.log(queue[i].order[ii]);
             product.appendChild(extraList);
             for (let iii = 0; iii < extras.length; iii++) {
                 let extraTitle = document.createElement('li');

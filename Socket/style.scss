@@ -41,6 +41,7 @@ ul {
 }
 
 .holder {
+  position: relative;
   flex: 1;
   background: $white;
   padding: $padding;
@@ -53,8 +54,28 @@ ul {
 }
 
 #main:not(.hidden) {
+  > button{
+    position: absolute;
+    top: 0;
+    background: $red;
+    color: $white;
+    border: none;
+    font-weight: 200;
+    font-size: 1.2em;
+    padding: $padding/4 $padding/2;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  //position: relative;
   display: flex;
   border: dashed 1px black;
+  #ingredients:not(.hidden){
+    ~ #queue{
+      display: none;
+    }
+    flex: 7;
+    padding-right: $padding;
+  }
   #queue {
     flex: 7;
     padding-right: $padding;

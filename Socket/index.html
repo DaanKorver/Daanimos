@@ -27,8 +27,10 @@
         <button id="loginBtn">Login</button>
     </div>
     <div id="main" class="hidden">
+        <div id="ingredients" class="hidden"></div>
         <div id="queue"></div>
         <div id="status"></div>
+        <button onclick="document.getElementById('ingredients').classList.toggle('hidden')">Toggle ingredients</button>
     </div>
 </div>
 </body>
@@ -39,7 +41,8 @@
     socket.on('connect', () => {
         let data = {
             queue: [],
-            status: []
+            status: [],
+            ingredients: [],
         };
 
         // loader switches to login
@@ -62,6 +65,7 @@
         });
         socket.on('data update', (newdata) => {
             data = newdata;
+            console.log(data);
             drawData(data);
         });
     });
