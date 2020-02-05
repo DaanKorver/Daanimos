@@ -4,6 +4,9 @@ import Home from './components/Home'
 import Drinks from './components/Drinks'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
+import ProductList from './components/ProductList';
+import {ProductProvider} from "./context";
+
 import {styles} from './AppStyle';
 import { ScreenOrientation } from 'expo';
 
@@ -44,13 +47,15 @@ export default class DaanimosApp extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
-                    <View style={this.state.route !== 'home' ? styles.main : styles.home}>
-                        {this.getRoute()}
-                    </View>
-            </ImageBackground>
-            </View>
+            <ProductProvider>
+                <View style={{flex: 1}}>
+                    <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
+                        <View style={this.state.route !== 'home' ? styles.main : styles.home}>
+                            {this.getRoute()}
+                        </View>
+                </ImageBackground>
+                </View>
+            </ProductProvider>
         );
     }
 }
