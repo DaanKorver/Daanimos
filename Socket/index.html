@@ -27,26 +27,13 @@
         <button id="loginBtn">Login</button>
     </div>
     <div id="main" class="hidden">
-        <div id="queue">
-        </div>
-        <div id="status">
-            <div>
-                <h3>Tafel 1</h3>
-                <span class="status">In the oven</span>
-            </div>
-            <div>
-                <h3>Tafel 2</h3>
-                <span class="status">Preparing</span>
-            </div>
-            <div>
-                <h3>Tafel 3</h3>
-                <span class="status">In queue</span>
-            </div>
-        </div>
+        <div id="queue"></div>
+        <div id="status"></div>
     </div>
 </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
+<script src="./drawData.js"></script>
 <script>
     const socket = io(window.location.origin);
     socket.on('connect', () => {
@@ -71,105 +58,14 @@
             if (isLoggedIn) {
                 document.getElementById('login').classList.add('hidden');
                 document.getElementById('main').classList.remove('hidden');
+                socket.emit('request data');
             }
-        })
+        });
         socket.on('data update', (newdata) => {
+            console.log(newdata);
             data = newdata;
             drawData(data);
         });
-
-        data = {
-            queue: [
-                {
-                    table: 1,
-                    order: [
-                        {
-                            name: "Pizza Hawaii",
-                            price: 8.5,
-                            extras: [{name: 'big', price: 2}, {name: 'extra cheese', price: 1}]
-                        },
-                        {name: "Pizza Salami", price: 8, extras: [{name: 'cheese crust', price: 2.5}]}
-                    ],
-                    isOpen: true,
-                },
-                {
-                    table: 2,
-                    order: [
-                        {
-                            name: "Pizza Hawaii",
-                            price: 8.5,
-                            extras: [{name: 'big', price: 2}, {name: 'extra cheese', price: 1}]
-                        },
-                        {name: "Pizza Salami", price: 8, extras: [{name: 'cheese crust', price: 2.5}]}
-                    ],
-                    isOpen: false,
-                }
-            ],
-            status: [],
-        };
-        drawData(data);
     });
-
-    function drawData(data) {
-        // document.getElementById('queue').innerHTML = "";
-        for (let i = 0; i < data.queue.length; i++) {
-            let item = document.createElement('div');
-            let total = 0;
-            item.classList.add('item');
-            if (!data.queue[i].isOpen) {
-                item.classList.add('closed');
-            }
-            let title = document.createElement('h3');
-            title.innerText = "Tafel " + data.queue[i].table;
-            item.appendChild(title);
-
-            let itemList = document.createElement('ul');
-            for (let ii = 0; ii < data.queue[i].order.length; ii++){
-                let product = document.createElement('li');
-                let productTitle = document.createElement('h4');
-                productTitle.innerText = data.queue[i].order[ii].name;
-                product.appendChild(productTitle);
-                let productPrice = document.createElement('span');
-                productPrice.classList.add('price');
-                total += data.queue[i].order[ii].price;
-
-                // turns 8.5 into "€ 8,50" (example)
-                productPrice.innerText = getPriceString(data.queue[i].order[ii].price);
-                productTitle.appendChild(productPrice);
-                itemList.appendChild(product);
-
-                let extras = data.queue[i].order[ii].extras;
-                let extraList = document.createElement('ul');
-                extraList.classList.add('extras');
-                product.appendChild(extraList);
-                for (let iii = 0; iii < extras.length; iii++){
-                    let extraTitle = document.createElement('li');
-                    extraTitle.innerText = extras[iii].name;
-
-                    let extraItemPrice = document.createElement('span');
-                    extraItemPrice.classList.add('price');
-                    total += extras[iii].price;
-
-                    // turns 12.5 into "+ € 12,50" (example)
-                    extraItemPrice.innerText = "+ " + getPriceString(extras[iii].price);
-                    extraTitle.appendChild(extraItemPrice);
-                    extraList.appendChild(extraTitle);
-                }
-
-            }
-
-            item.appendChild(itemList);
-            item.innerHTML += "<div class\"total\">Total:<span class=\"price\">"+ getPriceString(total) +"</span></div>"
-            document.getElementById('queue').appendChild(item);
-        }
-    }
-
-    function getPriceString(price) {
-        let string = "€ " + Math.floor(price) + "," + (price - Math.floor(price)) * 100;
-        if (price - Math.floor(price) === 0){
-            string += "0";
-        }
-        return string
-    }
 </script>
 </html>
