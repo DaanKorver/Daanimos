@@ -4,10 +4,12 @@ import Home from './components/Home'
 import Drinks from './components/Drinks'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
-import ProductList from './components/ProductList';
-import {ProductProvider} from "./context";
+import {ProductProvider, ProductConsumer} from "./context";
+import CartTotals from "./components/Cart/CartTotals";
 import {styles} from './AppStyle';
 import { ScreenOrientation } from 'expo';
+import Product from "./components/Product";
+import CartList from "./components/Cart/CartList";
 
 export default class DaanimosApp extends Component {
 
@@ -51,6 +53,13 @@ export default class DaanimosApp extends Component {
                     <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
                         <View style={this.state.route !== 'home' ? styles.main : styles.home}>
                             {this.getRoute()}
+                        </View>
+                        <View>
+                            <ProductConsumer>
+                                {value => {
+                                    return <CartTotals value={value}></CartTotals>
+                                }}
+                            </ProductConsumer>
                         </View>
                 </ImageBackground>
                 </View>
