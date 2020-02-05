@@ -82,10 +82,6 @@ socket.on('connection', function (client) {
     client.on('request data', function () {
         dataUpdate();
     });
-    client.on('open order', function (tableNum) {
-        data.orders.find(q => q.table === tableNum).status = 1;
-        dataUpdate();
-    });
     client.on('data update', function (newdata) {
         dataUpdate(newdata);
     });
