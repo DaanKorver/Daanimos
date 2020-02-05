@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {pizzas, detailPizza} from "./data";
+import {products} from "./data";
 
 const ProductContext = React.createContext();
 //provider
@@ -16,7 +16,7 @@ class ProductProvider extends Component {
     };
     setProducts = () => {
         let tempProducts = [];
-        pizzas.forEach(item => {
+        products.forEach(item => {
             const singleItem = {...item};
             tempProducts = [...tempProducts,singleItem];
 
@@ -31,12 +31,6 @@ class ProductProvider extends Component {
         return product;
     }
 
-    handleDetail = (id) => {
-        const product = this.getItem(id);
-        this.setState(()=>{
-            return {detailPizza:product};
-        })
-    };
     addToCart = (id) => {
         let tempProducts = [...this.state.products];
         const index = tempProducts.indexOf(this.getItem(id));
@@ -130,7 +124,6 @@ class ProductProvider extends Component {
         return (
             <ProductContext.Provider value={{
                 ...this.state,
-                handleDetail:this.handleDetail,
                 addToCart:this.addToCart,
                 increment:this.increment,
                 decrement: this.decrement,

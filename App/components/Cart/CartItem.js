@@ -2,41 +2,45 @@ import React from 'react';
 import {View, Text} from 'react-native';
 
 export default function CartItem({item,value}){
-    const{id,type,price,total,count} = item;
+    const{id,name,price,total,count} = item;
     const {increment,decrement,removeItem} = value;
     return (
-        <View className="row my-3 text-capitalize text-center">
+        <View>
 
-            <View className="col-10 mx-auto col-lg-2">
-                <Text className="d-lg-none">product : {type}</Text>
+            <View>
+                <Text>
+                    product : {name}
+                </Text>
             </View>
-            <View className="col-10 mx-auto col-lg-2">
-                <Text className="d-lg-none">price : {price}</Text>
+            <View>
+                <Text>
+                    price : {price}
+                </Text>
 
             </View>
-            <View className="col-10 mx-auto col-lg-2 my-2 my-lg-0">
-                <View className="d-flex justify-content-center">
+            <View>
+                <View>
                     <View>
-              <Text className="btn btn-black mx-1"
-                    onClick={() =>decrement(id)}>
-                -</Text>
+                        <Text onPress={() =>decrement(id)}>
+                            -
+                        </Text>
 
-                        <Text className="btn btn-black mx-1">
-                  {count}</Text>
-                        <Text className="btn btn-black mx-1"
-                              onClick={() =>increment(id)}>
-                +</Text>
+                        <Text>
+                         {count}
+                        </Text>
+                        <Text onPress={() =>increment(id)}>
+                            +
+                        </Text>
                     </View>
                 </View>
             </View>
-            {/* End of column */}
 
-            <View className="col-10 mx-auto col-lg-2">
-                <View className="cart-icon" onPress={()=>removeItem(id)}>
+            <View>
+                <View onPress={()=>removeItem(id)}>
                 </View>
             </View>
 
-            <View className="col-10 mx-auto col-lg-2">
+            <View>
                 <Text>Totaal: € {total}</Text>
             </View>
         </View>

@@ -5,10 +5,10 @@ import CartTotals from "./Cart/CartTotals";
 
 class Product extends Component {
     render() {
-        const {id, type, price, inCart} = this.props.product;
+        const {id, name, price, inCart} = this.props.product;
         return (
                 <View className="card">
-                    <Text>Pizza {type}</Text>
+                    <Text>Pizza {name}</Text>
                     <Text>$ {price}</Text>
                     <ProductConsumer>
                         {(value) => (

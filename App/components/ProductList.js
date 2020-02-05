@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import Product from './Product';
-import {pizzas} from "../data";
-import {ProductProvider, ProductConsumer} from "../context";
+import {products} from "../data";
+import {ProductConsumer} from "../context";
 import { View } from 'react-native';
 import CartTotals from "./Cart/CartTotals";
 import CartList from "./Cart/CartList";
-import CartItem from "./Cart/CartItem";
 
 class ProductList extends Component {
     state = {
-        products: pizzas
+        products: products,
     }
     render() {
         return (
