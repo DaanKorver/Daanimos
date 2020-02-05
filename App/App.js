@@ -4,6 +4,9 @@ import Home from './components/Home'
 import Drinks from './components/Drinks'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
+import ProductList from './components/ProductList';
+import {ProductProvider} from "./context";
+
 import {styles} from './AppStyle';
 
 export default class DaanimosApp extends Component {
@@ -42,18 +45,20 @@ export default class DaanimosApp extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                    {/* <Button style={styles.button} title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
-                    <Button style={styles.button} title="home" onPress={()=>{this.setRoute("home")}}>home</Button> */}
-                    <TouchableOpacity onPress={()=>{this.setRoute("home")}}><Text style={styles.button}>Home</Text></TouchableOpacity>
-                </View>
-                <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
-                    <View style={styles.main}>
-                        {this.getRoute()}
+            <ProductProvider>
+                <View style={{flex: 1}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                        {/* <Button style={styles.button} title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
+                        <Button style={styles.button} title="home" onPress={()=>{this.setRoute("home")}}>home</Button> */}
+                        <TouchableOpacity onPress={()=>{this.setRoute("home")}}><Text style={styles.button}>Home</Text></TouchableOpacity>
                     </View>
-            </ImageBackground>
-            </View>
+                    <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
+                        <View style={styles.main}>
+                            {this.getRoute()}
+                        </View>
+                </ImageBackground>
+                </View>
+            <ProductProvider>
         );
     }
 }
