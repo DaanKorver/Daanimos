@@ -6,7 +6,6 @@ import Extras from './components/Extras'
 import Pizza from './components/Pizza'
 import ProductList from './components/ProductList';
 import {ProductProvider} from "./context";
-
 import {styles} from './AppStyle';
 import { ScreenOrientation } from 'expo';
 
