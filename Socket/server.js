@@ -35,9 +35,9 @@ data = {
         }
     ],
     status: [
-        {table: 1, status: "In the oven"},
-        {table: 2, status: "Preparing"},
-        {table: 3, status: "In queue"}
+        {table: 1, status: 2},
+        {table: 2, status: 1},
+        {table: 3, status: 0}
     ],
 };
 
@@ -62,13 +62,20 @@ socket.on('connection', function (client) {
         console.log("DISCONNENT", client.id);
     });
     client.on('request data', function () {
-        console.log('requesting data');
         socket.emit('data update', data)
+    });
+    client.on('open order', function (tableNum) {
+        data.queue.find(q => q.table === tableNum).isOpen = true;
+        socket.emit('data update', data);
     });
     client.on('data update', function (newdata) {
         data = newdata;
-        socket.emit('data update', data)
-    })
+        socket.emit('data update', data);
+    });
+    client.on('status update', function (update) {
+        data.status.find(q => q.table === update.table).status = update.status;
+        socket.emit('data update', data);
+    });
 
 });
 

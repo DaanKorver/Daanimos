@@ -60,10 +60,15 @@ ul {
     padding-right: $padding;
     .item{
       position: relative;
+      .productCount{
+        display: none;
+      }
       .price{
         position: absolute;
         right: 0;
         padding: 0 $padding;
+        color: $blue;
+        font-weight: 500;
 
       }
       background: #eee;
@@ -73,6 +78,31 @@ ul {
       }
       &:not(:first-child){
         margin-top: $padding;
+      }
+      &.closed{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        h3{
+          padding-right: $padding/2;
+        }
+        .productCount{
+          flex: 1;
+          padding: 0 $padding/2;
+          display: block;
+          border-left: 2px solid $red;
+        }
+        .total{
+          padding-left: $padding/2;
+          .price{
+            position: unset;
+            right: unset;
+            padding: 0 0 0 $padding;
+          }
+        }
+        ul{
+          display: none;
+        }
       }
     }
   }

@@ -5,35 +5,47 @@ function drawData(data) {
 
 function drawStatus(status) {
     document.getElementById('status').innerHTML = "";
-    for (let i = 0; i < status.length; i++){
-        console.log(i);
+    for (let i = 0; i < status.length; i++) {
         let table = document.createElement('div');
         document.getElementById('status').appendChild(table);
         let title = document.createElement('h3');
         title.innerText = "Tafel " + status[i].table;
         table.appendChild(title);
-        let statusText = document.createElement('span');
-        statusText.classList.add('status');
-        statusText.innerText = status[i].status;
-        table.appendChild(statusText);
+        let select = createStatusSelect(status[i].status, status[i].table);
+        select.classList.add('status');
+        table.appendChild(select);
     }
 }
 
 function drawQueue(queue) {
-    document.getElementById('queue').innerHTML = "";
+    let queueDom = document.getElementById('queue');
+    queueDom.innerHTML = "";
     for (let i = 0; i < queue.length; i++) {
         let item = document.createElement('div');
+        queueDom.appendChild(item);
         let total = 0;
+        let productCount = document.createElement('div');
+        productCount.classList.add('productCount');
+        productCount.innerText = queue.length + " item";
+        if (queue.length > 1) {
+            productCount.innerText += "s";
+        }
         item.classList.add('item');
         if (!queue[i].isOpen) {
             item.classList.add('closed');
+            let openButton = document.createElement('button');
+            openButton.innerText = "open order";
+            openButton.classList.add("openButton");
+            openButton.setAttribute("onClick", "setOpen(" + queue[i].table + ")");
+            item.appendChild(openButton);
         }
         let title = document.createElement('h3');
         title.innerText = "Tafel " + queue[i].table;
         item.appendChild(title);
+        item.appendChild(productCount);
 
         let itemList = document.createElement('ul');
-        for (let ii = 0; ii < queue[i].order.length; ii++){
+        for (let ii = 0; ii < queue[i].order.length; ii++) {
             let product = document.createElement('li');
             let productTitle = document.createElement('h4');
             productTitle.innerText = queue[i].order[ii].name;
@@ -51,7 +63,7 @@ function drawQueue(queue) {
             let extraList = document.createElement('ul');
             extraList.classList.add('extras');
             product.appendChild(extraList);
-            for (let iii = 0; iii < extras.length; iii++){
+            for (let iii = 0; iii < extras.length; iii++) {
                 let extraTitle = document.createElement('li');
                 extraTitle.innerText = extras[iii].name;
 
@@ -68,15 +80,38 @@ function drawQueue(queue) {
         }
 
         item.appendChild(itemList);
-        item.innerHTML += "<div class\"total\">Total:<span class=\"price\">"+ getPriceString(total) +"</span></div>"
-        document.getElementById('queue').appendChild(item);
+        item.innerHTML += "<div class=\"total\">Total:<span class=\"price\">" + getPriceString(total) + "</span></div>"
     }
 }
 
 function getPriceString(price) {
     let string = "€ " + Math.floor(price) + "," + (price - Math.floor(price)) * 100;
-    if (price - Math.floor(price) === 0){
+    if (price - Math.floor(price) === 0) {
         string += "0";
     }
     return string
+}
+
+function setOpen(table) {
+    socket.emit('open order', table);
+}
+
+function createStatusSelect(index, table) {
+    const array = ["In Queue", "Preparing", "In the oven", "done"];
+    let selectList = document.createElement("select");
+
+    for (let i = 0; i < array.length; i++) {
+        let option = document.createElement("option");
+        option.value = i;
+        if (i === index) {
+            option.selected = true;
+        }
+        option.text = array[i];
+        selectList.appendChild(option);
+    }
+    selectList.addEventListener('change', function (e) {
+        socket.emit('status update', {table: table, status: parseInt(selectList.value)});
+    });
+
+    return selectList
 }

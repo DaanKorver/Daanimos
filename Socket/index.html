@@ -54,7 +54,6 @@
         });
 
         socket.on('login', (isLoggedIn) => {
-            console.log(isLoggedIn);
             if (isLoggedIn) {
                 document.getElementById('login').classList.add('hidden');
                 document.getElementById('main').classList.remove('hidden');
@@ -62,7 +61,6 @@
             }
         });
         socket.on('data update', (newdata) => {
-            console.log(newdata);
             data = newdata;
             drawData(data);
         });
