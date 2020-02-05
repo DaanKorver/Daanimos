@@ -5,7 +5,16 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 let login = {username: 'admin', password: '123'};
 let data = {queue:[],status:[]};
+var fs = require('fs');
 
+
+
+function updateFile(){
+    fs.writeFile('appstorage.json', JSON.stringify(data), function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
+}
 
 data = {
     queue: [
