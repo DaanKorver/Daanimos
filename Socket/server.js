@@ -7,48 +7,15 @@ let login = {username: 'admin', password: '123'};
 let data = {queue:[],status:[]};
 var fs = require('fs');
 
-
+fs.readFile('appstorage.json', function(err, newdata) {
+    data = JSON.parse(newdata,'utf8');
+});
 
 function updateFile(){
     fs.writeFile('appstorage.json', JSON.stringify(data), function (err) {
         if (err) throw err;
-        console.log('Saved!');
     });
 }
-
-data = {
-    queue: [
-        {
-            table: 1,
-            order: [
-                {
-                    name: "Pizza Hawaii",
-                    price: 8.5,
-                    extras: [{name: 'big', price: 2}, {name: 'extra cheese', price: 1}]
-                },
-                {name: "Pizza Salami", price: 8, extras: [{name: 'cheese crust', price: 2.5}]}
-            ],
-            isOpen: true,
-        },
-        {
-            table: 2,
-            order: [
-                {
-                    name: "Pizza Hawaii",
-                    price: 8.5,
-                    extras: [{name: 'big', price: 2}, {name: 'extra cheese', price: 1}]
-                },
-                {name: "Pizza Salami", price: 8, extras: [{name: 'cheese crust', price: 2.5}]}
-            ],
-            isOpen: false,
-        }
-    ],
-    status: [
-        {table: 1, status: 2},
-        {table: 2, status: 1},
-        {table: 3, status: 0}
-    ],
-};
 
 server.listen(3000);
 
@@ -62,7 +29,6 @@ socket.on('connection', function (client) {
     console.log("CONNECT:", client.id);
 
     client.on('send login', function (data) {
-        console.log(login, data);
         // Poor login system for demo purposes
         socket.to(client.id).emit('login', (login.username === data.username && login.password === data.password))
     });
@@ -78,13 +44,17 @@ socket.on('connection', function (client) {
         socket.emit('data update', data);
     });
     client.on('data update', function (newdata) {
-        data = newdata;
-        socket.emit('data update', data);
+        dataUpdate(newdata);
     });
     client.on('status update', function (update) {
         data.status.find(q => q.table === update.table).status = update.status;
-        socket.emit('data update', data);
+        dataUpdate();
     });
+
+    function dataUpdate(newdata = data) {
+        socket.emit('data update', newdata);
+        updateFile()
+    }
 
 });
 
