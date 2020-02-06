@@ -53,8 +53,31 @@ ul {
   display: none;
 }
 
+#qrCode {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: $padding * 3;
+  max-height: $padding * 3;
+  z-index: 99;
+  transition: .1s all;
+  &:hover{
+    cursor: none;
+    max-width:256px;
+    max-height:256px;
+  }
+  canvas{
+    display: none;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%
+  }
+}
+
 #main:not(.hidden) {
-  > button{
+  > button {
     position: absolute;
     top: 0;
     background: $red;
@@ -66,32 +89,41 @@ ul {
     left: 0;
     transform: translateY(-50%);
   }
+
   //position: relative;
   display: flex;
   border: dashed 1px black;
-  #ingredients:not(.hidden){
-    ~ #queue{
+
+  #ingredients:not(.hidden) {
+    ~ #queue {
       display: none;
     }
+
     > div {
       background: #eee;
       padding: $padding/2 $padding;
-      &:not(:last-child){
+
+      &:not(:last-child) {
         border-bottom: solid 1px $blue;
       }
     }
+
     flex: 7;
     padding-right: $padding;
   }
+
   #queue {
     flex: 7;
     padding-right: $padding;
-    .item{
+
+    .item {
       position: relative;
-      .productCount{
+
+      .productCount {
         display: none;
       }
-      .price{
+
+      .price {
         position: absolute;
         right: 0;
         padding: 0 $padding;
@@ -99,36 +131,45 @@ ul {
         font-weight: 500;
 
       }
+
       background: #eee;
       padding: $padding;
-      &:not(:last-child){
+
+      &:not(:last-child) {
         margin-bottom: $padding;
       }
-      &:not(:first-child){
+
+      &:not(:first-child) {
         margin-top: $padding;
       }
-      &.closed{
+
+      &.closed {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        h3{
+
+        h3 {
           padding-right: $padding/2;
         }
-        .productCount{
+
+        .productCount {
           flex: 1;
           padding: 0 $padding/2;
           display: block;
           border-left: 2px solid $red;
         }
-        .total{
+
+        .total {
           padding-left: $padding/2;
-          .price{
+
+          .price {
             position: unset;
             right: unset;
             padding: 0 0 0 $padding;
           }
         }
-        ul{
+
+        ul {
           display: none;
         }
       }
@@ -137,13 +178,16 @@ ul {
 
   #status {
     flex: 2 0 250px;
+
     > div {
       background: #eee;
       padding: $padding;
-      &:not(:last-child){
+
+      &:not(:last-child) {
         margin-bottom: $padding;
       }
-      &:not(:first-child){
+
+      &:not(:first-child) {
         margin-top: $padding;
       }
     }

@@ -13,10 +13,11 @@
     <h1>Admin</h1>
     <img src="logo.png" alt="Logo">
 </header>
+<div id="qrCode"></div>
 <div class="holder">
     <div id="loader"></div>
     <div id="login" class="hidden">
-     <span>
+        <span>
      <label for="username">username:</label>
          <input type="text" id="username">
      </span>
@@ -35,8 +36,10 @@
 </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
+<script src="./qrcode.min.js"></script>
 <script src="./drawData.js"></script>
-<script>
+<script type="module">
+
     const socket = io(window.location.origin);
     socket.on('connect', () => {
         let data = {
@@ -56,12 +59,15 @@
             });
         });
 
-        socket.on('login', (isLoggedIn) => {
+        socket.on('login', (isLoggedIn, url) => {
             if (isLoggedIn) {
                 document.getElementById('login').classList.add('hidden');
                 document.getElementById('main').classList.remove('hidden');
                 socket.emit('request data');
             }
+            console.log(url);
+            new QRCode(document.getElementById("qrCode"), url);
+
         });
         socket.on('data update', (newdata) => {
             data = newdata;

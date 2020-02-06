@@ -71,9 +71,9 @@ for (let i = 0; i < ifaceKeys.length; i++){
         latestIpv4 = ipv4.address
     }
 }
-
+let url = "http://" + latestIpv4 + ":" + port + "/";
 server.listen(port, function(){
-    console.log("Server started on http://" + latestIpv4 + ":" + port + "/");
+    console.log("Server started on " + url);
 });
 
 
@@ -88,7 +88,7 @@ socket.on('connection', function (client) {
 
     client.on('send login', function (data) {
         // Poor login system for demo purposes
-        socket.to(client.id).emit('login', (login.username === data.username && login.password === data.password))
+        socket.to(client.id).emit('login', (login.username === data.username && login.password === data.password), url)
     });
     client.on('disconnect', function () {
         // clearInterval(interval);

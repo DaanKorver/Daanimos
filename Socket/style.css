@@ -45,6 +45,29 @@ ul {
   display: none;
 }
 
+#qrCode {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 96px;
+  max-height: 96px;
+  z-index: 99;
+  transition: 0.1s all;
+}
+#qrCode:hover {
+  cursor: none;
+  max-width: 256px;
+  max-height: 256px;
+}
+#qrCode canvas {
+  display: none;
+}
+#qrCode img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 #main:not(.hidden) {
   display: flex;
   border: dashed 1px black;

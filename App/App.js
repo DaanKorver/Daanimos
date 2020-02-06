@@ -12,7 +12,7 @@ export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'connect', price: 0};
+        this.state = {route: 'connect',connected: false, price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
@@ -48,6 +48,7 @@ export default class DaanimosApp extends Component {
 
         this.socket.on("connect", () => {
             this.setRoute("home");
+            this.setState({connected: true})
         });
     }
 
@@ -59,11 +60,10 @@ export default class DaanimosApp extends Component {
         return (
             <View style={{flex: 1}}>
                 <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                    {/* <Button style={styles.button} title="test" onPress={()=>{this.setRoute("test")}}>test</Button>
-                    <Button style={styles.button} title="home" onPress={()=>{this.setRoute("home")}}>home</Button> */}
                     <TouchableOpacity onPress={() => {
                         this.setRoute("home")
                     }}><Text style={styles.button}>Home</Text></TouchableOpacity>
+                    {this.state.connected ? <Text>Connected!</Text> : <Text>No connection..</Text>}
                 </View>
                 <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
                     <View style={styles.main}>
