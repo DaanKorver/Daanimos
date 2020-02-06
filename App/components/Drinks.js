@@ -15,8 +15,10 @@ class Drinks extends Component {
                 <ProductConsumer>
                     {value => {
                         return this.state.products.map( product =>{
-                            return <Product key={product.id} product={product}
-                            />
+                            if (product.type == "drink") {
+                                return <Product key={product.id} product={product}
+                                />
+                            }
                         })
                     }}
                 </ProductConsumer>

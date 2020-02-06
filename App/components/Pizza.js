@@ -1,14 +1,26 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {styles} from '../AppStyle';
+import {ProductConsumer} from "../context";
+import Product from "./Product";
+import {products} from "../data";
 
 class Pizza extends Component {
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.red}>Pizza</Text>
+                <ProductConsumer>
+                    {value => {
+                        return products.map( product =>{
+                            if (product.type == "pizza") {
+                                return <Product key={product.id} product={product}
+                                />
+                            }
+                        })
+                    }}
+                </ProductConsumer>
                 <TouchableOpacity onPress={()=>{this.props.setRoute("home")}} style={styles.button}><Text>Back</Text></TouchableOpacity>
-                {/*Rick Pizza form goes here (you can remove the title ofcourse)*/}
             </View>
         );
     }
