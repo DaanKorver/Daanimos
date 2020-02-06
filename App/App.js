@@ -17,7 +17,7 @@ export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'connect',productView: false, connected: false, price: 0};
+        this.state = {route: 'connect', connected: false, price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
@@ -28,28 +28,23 @@ export default class DaanimosApp extends Component {
     getRoute() {
         switch (this.state.route) {
             case 'connect':
-                this.setProductView(false);
                 return <Connect makeSocket={this.makeSocket}/>;
             case 'home':
-                this.setProductView(false);
                 return <Home setRoute={this.setRoute}/>;
             case 'drinks':
-                this.setProductView(true);
                 return <Drinks setRoute={this.setRoute}/>;
             case 'extras':
-                this.setProductView(true);
                 return <Extras setRoute={this.setRoute}/>;
             case 'pizza':
-                this.setProductView(true);
                 return <Pizza setRoute={this.setRoute}/>;
             default:
                 return ''
         }
     }
 
-    setProductView(bool){
-        if (this.state.productView !== bool){
-            this.setState({productView:bool});
+    setProductView(bool) {
+        if (this.state.productView !== bool) {
+            this.setState({productView: bool});
         }
     }
 
@@ -75,26 +70,23 @@ export default class DaanimosApp extends Component {
 
     render() {
         return (
-
-            <View style={{flex: 1}}>
-                <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
-                    <View style={this.state.route !== 'home' ? styles.main : styles.home}>
-                        {this.getRoute()}
-                    </View>
-                    {this.state.productView ?
-                        <ProductProvider>
-                            <View>
-                                <ProductConsumer>
-                                    {value => {
-                                        return <CartTotals value={value}></CartTotals>
-                                    }}
-                                </ProductConsumer>
-                            </View>
-                        </ProductProvider>
-                    : null}
-                </ImageBackground>
-            </View>
-    )
-        ;
+            <ProductProvider>
+                <View style={{flex: 1}}>
+                    <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
+                        <View style={this.state.route !== 'home' ? styles.main : styles.home}>
+                            {this.getRoute()}
+                        </View>
+                        <View>
+                            <ProductConsumer>
+                                {value => {
+                                    return <CartTotals value={value}></CartTotals>
+                                }}
+                            </ProductConsumer>
+                        </View>
+                    </ImageBackground>
+                </View>
+            </ProductProvider>
+        )
+            ;
     }
 }
