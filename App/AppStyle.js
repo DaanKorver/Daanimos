@@ -20,9 +20,12 @@ const styles = StyleSheet.create({
         padding: 24,
         backgroundColor: 'dodgerblue',
     },
-    red: {
+    Headline: {
         color: '#000',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 50,
+        paddingLeft: widthPercentageToDP("2"),
+        marginBottom: heightPercentageToDP("5"),
     },
     home: {
         display: 'flex',
@@ -47,7 +50,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: 'relative',
-        padding: 10
     },
     mainButton: {
         padding: 10,
@@ -62,17 +64,86 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row'
     },
+    homeImage: {
+        width: widthPercentageToDP("10"),
+        height: widthPercentageToDP("10"),
+        resizeMode: 'contain',
+    },
     button: {
         width: widthPercentageToDP("25"),
         padding: 10,
-        borderWidth: 2,
-        borderColor: "crimson",
+        backgroundColor: "crimson",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
         bottom: 10,
         left: 10,
+    },
+    buttonTxt: {
+        color: "#fff",
+    },
+    total: {
+        color: "#fff",
+        fontWeight: "bold"
+    },
+    productContainer: {
+        width: widthPercentageToDP("100") - 46,
+        height: heightPercentageToDP("80"),
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        overflowX: "scroll"
+    },
+    product: {
+        width: widthPercentageToDP("100") - 46,
+        height: heightPercentageToDP("20"),
+        borderBottomWidth: 2,
+        display: "flex",
+        flexDirection: "row",
+    },
+    productImageContainer: {
+        height: heightPercentageToDP("20") - 4,
+        width: widthPercentageToDP("7"),
+        display: "flex",
+    },
+    productImage: {
+        flex: 1,
+        height: null,
+        width: null,
+        resizeMode: 'contain',
+    },
+    priceContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "flex-start",
+        paddingLeft: widthPercentageToDP("3.5")
+    },
+    pizzaName: {
+        fontSize: widthPercentageToDP("3.5"),
+        fontWeight: "bold",
+        marginBottom: 15
+    },
+    pizzaPrice: {
+        fontSize: 25,
+        fontWeight: "bold",
+        marginBottom: 15
+    },
+    pizzaButtonContainer: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    pizzaButton: {
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 10,
+        marginBottom: 10,
+        backgroundColor: "crimson",
+        width: widthPercentageToDP("15"),
+        padding: heightPercentageToDP("2"),
     }
 });
 

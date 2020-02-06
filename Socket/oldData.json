@@ -1,0 +1,78 @@
+{
+  "queue": [
+    {
+      "table": 1,
+      "order": [
+        {
+          "name": "Pizza Hawaii",
+          "price": 8.5,
+          "extras": [
+            {
+              "name": "big",
+              "price": 2
+            },
+            {
+              "name": "extra cheese",
+              "price": 1
+            }
+          ]
+        },
+        {
+          "name": "Pizza Salami",
+          "price": 8,
+          "extras": [
+            {
+              "name": "cheese crust",
+              "price": 2.5
+            }
+          ]
+        }
+      ],
+      "isOpen": true
+    },
+    {
+      "table": 2,
+      "order": [
+        {
+          "name": "Pizza Hawaii",
+          "price": 8.5,
+          "extras": [
+            {
+              "name": "big",
+              "price": 2
+            },
+            {
+              "name": "extra cheese",
+              "price": 1
+            }
+          ]
+        },
+        {
+          "name": "Pizza Salami",
+          "price": 8,
+          "extras": [
+            {
+              "name": "cheese crust",
+              "price": 2.5
+            }
+          ]
+        }
+      ],
+      "isOpen": false
+    }
+  ],
+  "status": [
+    {
+      "table": 1,
+      "status": 2
+    },
+    {
+      "table": 2,
+      "status": 1
+    },
+    {
+      "table": 3,
+      "status": 0
+    }
+  ]
+}

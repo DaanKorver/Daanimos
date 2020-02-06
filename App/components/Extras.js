@@ -7,7 +7,7 @@ class Extras extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.red}>Extras</Text>
-                <TouchableOpacity onPress={()=>{this.props.setRoute("home")}} style={styles.button}><Text>Back</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=>{this.props.setRoute("home")}} style={styles.button}><Text style={styles.buttonTxt}>Back</Text></TouchableOpacity>
             </View>
         );
     }
