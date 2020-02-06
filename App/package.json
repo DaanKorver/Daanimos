@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "expo": "^35.0.0",
+    "expo-barcode-scanner": "^8.0.0",
+    "expo-permissions": "latest",
     "node-sass": "^4.13.1",
     "react": "16.8.3",
     "react-dom": "^16.8.3",
@@ -18,8 +20,7 @@
     "react-native-paper": "^3.4.0",
     "react-native-web": "^0.11.7",
     "socket.io": "^2.3.0",
-    "socket.io-client": "latest",
-    "expo-permissions": "latest"
+    "socket.io-client": "latest"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.1.0"
