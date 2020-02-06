@@ -62,17 +62,86 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row'
     },
+    homeImage: {
+        width: widthPercentageToDP("10"),
+        height: widthPercentageToDP("10"),
+        resizeMode: 'contain',
+    },
     button: {
         width: widthPercentageToDP("25"),
         padding: 10,
-        borderWidth: 2,
-        borderColor: "crimson",
+        backgroundColor: "crimson",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
         bottom: 10,
         left: 10,
+    },
+    buttonTxt: {
+        color: "#fff",
+    },
+    total: {
+        color: "#fff",
+        fontWeight: "bold"
+    },
+    productContainer: {
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    product: {
+        width: widthPercentageToDP("100") - 46,
+        height: heightPercentageToDP("25"),
+        borderBottomWidth: 2,
+        marginTop: 10,
+        marginBottom: 10,
+        display: "flex",
+        flexDirection: "row"
+    },
+    productImageContainer: {
+        height: heightPercentageToDP("25") - 4,
+        width: widthPercentageToDP("8"),
+        display: "flex",
+    },
+    productImage: {
+        flex: 1,
+        height: null,
+        width: null,
+        resizeMode: 'contain',
+    },
+    priceContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "flex-start",
+        paddingLeft: widthPercentageToDP("3.5")
+    },
+    pizzaName: {
+        fontSize: widthPercentageToDP("3.5"),
+        fontWeight: "bold",
+        marginBottom: 15
+    },
+    pizzaPrice: {
+        fontSize: 25,
+        fontWeight: "bold",
+        marginBottom: 15
+    },
+    pizzaButtonContainer: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    pizzaButton: {
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 10,
+        marginBottom: 10,
+        backgroundColor: "crimson",
+        width: widthPercentageToDP("15"),
+        padding: heightPercentageToDP("2"),
     }
 });
 

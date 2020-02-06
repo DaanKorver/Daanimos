@@ -6,6 +6,9 @@ import Product from "./Product";
 import {products} from "../data";
 
 class Pizza extends Component {
+    state = {
+        products: products,
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -20,7 +23,8 @@ class Pizza extends Component {
                         })
                     }}
                 </ProductConsumer>
-                <TouchableOpacity onPress={()=>{this.props.setRoute("home")}} style={styles.button}><Text>Back</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=>{this.props.setRoute("home")}} style={styles.button}><Text style={styles.buttonTxt}>Back</Text></TouchableOpacity>
+                {/*Rick Pizza form goes here (you can remove the title ofcourse)*/}
             </View>
         );
     }
