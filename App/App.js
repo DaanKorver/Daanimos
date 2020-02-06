@@ -31,6 +31,8 @@ export default class DaanimosApp extends Component {
                 return <Extras setRoute={this.setRoute}/>;
             case 'pizza':
                 return <Pizza setRoute={this.setRoute}/>;
+            case 'cart':
+                return <Cart setRoute={this.setRoute}/>;
             default:
             return ''
         }
