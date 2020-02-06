@@ -2,7 +2,7 @@ export const products = [
     {
         id: 1,
         type: "pizza",
-        name: "Margarita",
+        name: "Salami",
         price: 10,
         size: '',
         inCart: false,
@@ -12,7 +12,7 @@ export const products = [
     {
         id: 2,
         type: "pizza",
-        name: "Salami",
+        name: "Margherita",
         price: 10,
         size: '',
         inCart: false,
