@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, View, Text} from 'react-native';
+import {styles} from '../../AppStyle';
 
 
 export default function CartTotals({value}){
@@ -7,17 +8,9 @@ export default function CartTotals({value}){
     return (
         <React.Fragment>
             <View>
-                <View>
-                    <View>
-                        <Button title="REMOVE ALL" onPress={() => clearCart()}>
-                        </Button>
-                       <Text>
-                         <Text>
-                             Totaal: € {cartTotal}
-                         </Text>
-                       </Text>
-                    </View>
-                </View>
+                <Text style={styles.total}>
+                    Totaal: € {cartTotal}
+                </Text>
             </View>
         </React.Fragment>
     );
