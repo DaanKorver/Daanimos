@@ -1,0 +1,195 @@
+$blue: #006491;
+$red: #e31837;
+$white: #fff;
+$padding: 32px;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,500&display=swap');
+
+body {
+  background: $blue;
+  margin: 0;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  position: absolute;
+  width: 50%;
+  right: 0;
+  padding: $padding;
+
+  h1 {
+    padding: $padding;
+  }
+
+  img {
+    max-height: 100%;
+    width: auto;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.holder {
+  position: relative;
+  flex: 1;
+  background: $white;
+  padding: $padding;
+  margin: $padding;
+  margin-top: $padding * 3;
+}
+
+.hidden {
+  display: none;
+}
+
+#qrCode {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: $padding * 3;
+  max-height: $padding * 3;
+  z-index: 99;
+  transition: .1s all;
+  &:hover{
+    cursor: none;
+    max-width:256px;
+    max-height:256px;
+  }
+  canvas{
+    display: none;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%
+  }
+}
+
+#main:not(.hidden) {
+  > button {
+    position: absolute;
+    top: 0;
+    background: $red;
+    color: $white;
+    border: none;
+    font-weight: 200;
+    font-size: 1.2em;
+    padding: $padding/4 $padding/2;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  //position: relative;
+  display: flex;
+  border: dashed 1px black;
+
+  #ingredients:not(.hidden) {
+    ~ #queue {
+      display: none;
+    }
+
+    > div {
+      background: #eee;
+      padding: $padding/2 $padding;
+
+      &:not(:last-child) {
+        border-bottom: solid 1px $blue;
+      }
+    }
+
+    flex: 7;
+    padding-right: $padding;
+  }
+
+  #queue {
+    flex: 7;
+    padding-right: $padding;
+
+    .item {
+      position: relative;
+
+      .productCount {
+        display: none;
+      }
+
+      .price {
+        position: absolute;
+        right: 0;
+        padding: 0 $padding;
+        color: $blue;
+        font-weight: 500;
+
+      }
+
+      background: #eee;
+      padding: $padding;
+
+      &:not(:last-child) {
+        margin-bottom: $padding;
+      }
+
+      &:not(:first-child) {
+        margin-top: $padding;
+      }
+
+      &.closed {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        h3 {
+          padding-right: $padding/2;
+        }
+
+        .productCount {
+          flex: 1;
+          padding: 0 $padding/2;
+          display: block;
+          border-left: 2px solid $red;
+        }
+
+        .total {
+          padding-left: $padding/2;
+
+          .price {
+            position: unset;
+            right: unset;
+            padding: 0 0 0 $padding;
+          }
+        }
+
+        ul {
+          display: none;
+        }
+      }
+    }
+  }
+
+  #status {
+    flex: 2 0 250px;
+
+    > div {
+      background: #eee;
+      padding: $padding;
+
+      &:not(:last-child) {
+        margin-bottom: $padding;
+      }
+
+      &:not(:first-child) {
+        margin-top: $padding;
+      }
+    }
+  }
+}
