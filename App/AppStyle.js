@@ -86,24 +86,26 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     productContainer: {
-        flex: 1,
+        position: "absolute",
+        left: 0,
+        width: widthPercentageToDP("100") - 46,
+        height: heightPercentageToDP("80"),
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        overflow: "scroll"
     },
     product: {
         width: widthPercentageToDP("100") - 46,
-        height: heightPercentageToDP("25"),
+        height: heightPercentageToDP("20"),
         borderBottomWidth: 2,
-        marginTop: 10,
-        marginBottom: 10,
         display: "flex",
         flexDirection: "row"
     },
     productImageContainer: {
-        height: heightPercentageToDP("25") - 4,
-        width: widthPercentageToDP("8"),
+        height: heightPercentageToDP("20") - 4,
+        width: widthPercentageToDP("7"),
         display: "flex",
     },
     productImage: {
