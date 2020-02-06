@@ -103,6 +103,11 @@ socket.on('connection', function (client) {
         data.orders.find(q => q.table === update.table).status = update.status;
         dataUpdate();
     });
+    client.on('order push', function (order) {
+        data.orders.push(order);
+        //TODO: ingredient buffer here
+        dataUpdate();
+    });
 
     function dataUpdate(newdata = data) {
         data = newdata;
