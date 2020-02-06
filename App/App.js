@@ -13,7 +13,7 @@ export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'connect', price: 0};
+        this.state = {route: 'pizza',order: [], price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
