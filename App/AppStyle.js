@@ -20,9 +20,12 @@ const styles = StyleSheet.create({
         padding: 24,
         backgroundColor: 'dodgerblue',
     },
-    red: {
+    Headline: {
         color: '#000',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 50,
+        paddingLeft: widthPercentageToDP("2"),
+        marginBottom: heightPercentageToDP("5"),
     },
     home: {
         display: 'flex',
@@ -47,7 +50,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: 'relative',
-        padding: 10
     },
     mainButton: {
         padding: 10,
@@ -86,8 +88,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     productContainer: {
-        position: "absolute",
-        left: 0,
         width: widthPercentageToDP("100") - 46,
         height: heightPercentageToDP("80"),
         display: "flex",
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         height: heightPercentageToDP("20"),
         borderBottomWidth: 2,
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
     },
     productImageContainer: {
         height: heightPercentageToDP("20") - 4,
