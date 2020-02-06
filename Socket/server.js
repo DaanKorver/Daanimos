@@ -10,7 +10,6 @@ let port = 3000;
 
 fs.readFile('appstorage.json', function (err, newdata) {
     data = JSON.parse(newdata, 'utf8');
-    // console.log(getUsefullData().queue[0].order[0].extras);
 });
 
 function getUsefullData() {
@@ -84,7 +83,7 @@ var socket = io.listen(server);
 
 // Add a connect listener
 socket.on('connection', function (client) {
-    console.log("CONNECT:", client.id);
+    //TODO: console.log("CONNECT:", client.id);
 
     client.on('send login', function (data) {
         // Poor login system for demo purposes
@@ -92,7 +91,7 @@ socket.on('connection', function (client) {
     });
     client.on('disconnect', function () {
         // clearInterval(interval);
-        console.log("DISCONNENT", client.id);
+        //TODO: console.log("DISCONNENT", client.id);
     });
     client.on('request data', function () {
         dataUpdate();
