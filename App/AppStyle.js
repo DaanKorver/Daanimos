@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        overflow: "scroll"
+        overflowX: "scroll"
     },
     product: {
         width: widthPercentageToDP("100") - 46,
