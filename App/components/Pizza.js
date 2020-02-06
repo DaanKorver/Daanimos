@@ -12,7 +12,7 @@ class Pizza extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.red}>Pizza</Text>
+                <Text style={styles.Headline}>Pizza's</Text>
                 <ProductConsumer>
                     {value => {
                         return products.map( product =>{
