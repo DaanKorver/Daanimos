@@ -6,33 +6,25 @@ export default function CartItem({item,value}){
     const {increment,decrement,removeItem} = value;
     return (
         <View>
-
-            <View>
                 <Text>
                     product : {name}
                 </Text>
-            </View>
             <View>
                 <Text>
                     price : {price}
                 </Text>
-
             </View>
             <View>
-                <View>
-                    <View>
-                        <Text onPress={() =>decrement(id)}>
-                            -
-                        </Text>
+                <Text onPress={() =>decrement(id)}>
+                    -
+                </Text>
 
-                        <Text>
-                         {count}
-                        </Text>
-                        <Text onPress={() =>increment(id)}>
-                            +
-                        </Text>
-                    </View>
-                </View>
+                <Text>
+                 {count}
+                </Text>
+                <Text onPress={() =>increment(id)}>
+                    +
+                </Text>
             </View>
 
             <View>
