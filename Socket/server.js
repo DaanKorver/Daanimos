@@ -109,6 +109,11 @@ socket.on('connection', function (client) {
         dataUpdate();
     });
 
+    client.on('ingredient update', function (ingredient) {
+       data.ingredients.find(i => i.name === ingredient.name).amount = parseInt(ingredient.amount);
+        dataUpdate();
+    });
+
     function dataUpdate(newdata = data) {
         data = newdata;
 

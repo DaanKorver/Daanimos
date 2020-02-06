@@ -33,14 +33,19 @@ function drawIngredients(ingredients) {
         let ingredient = document.createElement('div');
         ingredientDom.appendChild(ingredient);
         let ingredientTitle = document.createElement('h4');
-        let ingredientNumber = document.createElement('span');
+        let ingredientNumber = document.createElement('input');
+        ingredientNumber.type = 'number';
         let ingredientIdentifier = document.createElement('span');
         ingredient.appendChild(ingredientTitle);
         ingredient.appendChild(ingredientNumber);
         ingredient.appendChild(ingredientIdentifier);
         ingredientTitle.innerText = ingredients[i].name;
-        ingredientNumber.innerText = ingredients[i].amount;
+        ingredientNumber.value = ingredients[i].amount;
         ingredientIdentifier.innerText = ingredients[i].identifier;
+
+        ingredientNumber.addEventListener("change", function () {
+            socket.emit('ingredient update',{name: ingredients[i].name, amount: ingredientNumber.value});
+        })
     }
 }
 

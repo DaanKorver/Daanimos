@@ -38,9 +38,8 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="./qrcode.min.js"></script>
 <script src="./drawData.js"></script>
-<script type="module">
-
-    const socket = io(window.location.origin);
+<script>
+    const socket = io.connect(window.location.origin);
     socket.on('connect', () => {
         let data = {
             queue: [],
@@ -65,13 +64,11 @@
                 document.getElementById('main').classList.remove('hidden');
                 socket.emit('request data');
             }
-            console.log(url);
             new QRCode(document.getElementById("qrCode"), url);
 
         });
         socket.on('data update', (newdata) => {
             data = newdata;
-            console.log(data);
             drawData(data);
         });
     });
