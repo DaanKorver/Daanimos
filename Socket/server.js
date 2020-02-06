@@ -6,6 +6,7 @@ var io = require('socket.io')(server);
 let login = {username: 'admin', password: '123'};
 let data = {orders: [], ingredient: []};
 var fs = require('fs');
+let port = 3000;
 
 fs.readFile('appstorage.json', function (err, newdata) {
     data = JSON.parse(newdata, 'utf8');
@@ -60,7 +61,21 @@ function updateFile() {
     });
 }
 
-server.listen(3000);
+
+var ifaces = require('os').networkInterfaces();
+var ifaceKeys = Object.keys(ifaces);
+let latestIpv4 = '';
+for (let i = 0; i < ifaceKeys.length; i++){
+    let ipv4 = ifaces[ifaceKeys[i]].find(a => a.family === 'IPv4');
+    if (!!ipv4){
+        latestIpv4 = ipv4.address
+    }
+}
+
+server.listen(port, function(){
+    console.log("Server started on http://" + latestIpv4 + ":" + port + "/");
+});
+
 
 app.use(express.static('.'));
 

@@ -73,6 +73,13 @@ ul {
     ~ #queue{
       display: none;
     }
+    > div {
+      background: #eee;
+      padding: $padding/2 $padding;
+      &:not(:last-child){
+        border-bottom: solid 1px $blue;
+      }
+    }
     flex: 7;
     padding-right: $padding;
   }

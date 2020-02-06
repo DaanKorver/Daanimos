@@ -3,10 +3,11 @@ body {
   background: #006491;
   margin: 0;
   font-weight: 300;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   min-height: 100vh;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+}
 
 header {
   display: flex;
@@ -16,16 +17,20 @@ header {
   position: absolute;
   width: 50%;
   right: 0;
-  padding: 32px; }
-  header h1 {
-    padding: 32px; }
-  header img {
-    max-height: 100%;
-    width: auto; }
+  padding: 32px;
+}
+header h1 {
+  padding: 32px;
+}
+header img {
+  max-height: 100%;
+  width: auto;
+}
 
 ul {
   list-style: none;
-  padding: 0; }
+  padding: 0;
+}
 
 .holder {
   position: relative;
@@ -33,76 +38,105 @@ ul {
   background: #fff;
   padding: 32px;
   margin: 32px;
-  margin-top: 96px; }
+  margin-top: 96px;
+}
 
 .hidden {
-  display: none; }
+  display: none;
+}
 
 #main:not(.hidden) {
   display: flex;
-  border: dashed 1px black; }
-  #main:not(.hidden) > button {
-    position: absolute;
-    top: 0;
-    background: #e31837;
-    color: #fff;
-    border: none;
-    font-weight: 200;
-    font-size: 1.2em;
-    padding: 8px 16px;
-    left: 0;
-    transform: translateY(-50%); }
-  #main:not(.hidden) #ingredients:not(.hidden) {
-    flex: 7;
-    padding-right: 32px; }
-    #main:not(.hidden) #ingredients:not(.hidden) ~ #queue {
-      display: none; }
-  #main:not(.hidden) #queue {
-    flex: 7;
-    padding-right: 32px; }
-    #main:not(.hidden) #queue .item {
-      position: relative;
-      background: #eee;
-      padding: 32px; }
-      #main:not(.hidden) #queue .item .productCount {
-        display: none; }
-      #main:not(.hidden) #queue .item .price {
-        position: absolute;
-        right: 0;
-        padding: 0 32px;
-        color: #006491;
-        font-weight: 500; }
-      #main:not(.hidden) #queue .item:not(:last-child) {
-        margin-bottom: 32px; }
-      #main:not(.hidden) #queue .item:not(:first-child) {
-        margin-top: 32px; }
-      #main:not(.hidden) #queue .item.closed {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center; }
-        #main:not(.hidden) #queue .item.closed h3 {
-          padding-right: 16px; }
-        #main:not(.hidden) #queue .item.closed .productCount {
-          flex: 1;
-          padding: 0 16px;
-          display: block;
-          border-left: 2px solid #e31837; }
-        #main:not(.hidden) #queue .item.closed .total {
-          padding-left: 16px; }
-          #main:not(.hidden) #queue .item.closed .total .price {
-            position: unset;
-            right: unset;
-            padding: 0 0 0 32px; }
-        #main:not(.hidden) #queue .item.closed ul {
-          display: none; }
-  #main:not(.hidden) #status {
-    flex: 2 0 250px; }
-    #main:not(.hidden) #status > div {
-      background: #eee;
-      padding: 32px; }
-      #main:not(.hidden) #status > div:not(:last-child) {
-        margin-bottom: 32px; }
-      #main:not(.hidden) #status > div:not(:first-child) {
-        margin-top: 32px; }
+  border: dashed 1px black;
+}
+#main:not(.hidden) > button {
+  position: absolute;
+  top: 0;
+  background: #e31837;
+  color: #fff;
+  border: none;
+  font-weight: 200;
+  font-size: 1.2em;
+  padding: 8px 16px;
+  left: 0;
+  transform: translateY(-50%);
+}
+#main:not(.hidden) #ingredients:not(.hidden) {
+  flex: 7;
+  padding-right: 32px;
+}
+#main:not(.hidden) #ingredients:not(.hidden) ~ #queue {
+  display: none;
+}
+#main:not(.hidden) #ingredients:not(.hidden) > div {
+  background: #eee;
+  padding: 16px 32px;
+}
+#main:not(.hidden) #ingredients:not(.hidden) > div:not(:last-child) {
+  border-bottom: solid 1px #006491;
+}
+#main:not(.hidden) #queue {
+  flex: 7;
+  padding-right: 32px;
+}
+#main:not(.hidden) #queue .item {
+  position: relative;
+  background: #eee;
+  padding: 32px;
+}
+#main:not(.hidden) #queue .item .productCount {
+  display: none;
+}
+#main:not(.hidden) #queue .item .price {
+  position: absolute;
+  right: 0;
+  padding: 0 32px;
+  color: #006491;
+  font-weight: 500;
+}
+#main:not(.hidden) #queue .item:not(:last-child) {
+  margin-bottom: 32px;
+}
+#main:not(.hidden) #queue .item:not(:first-child) {
+  margin-top: 32px;
+}
+#main:not(.hidden) #queue .item.closed {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+#main:not(.hidden) #queue .item.closed h3 {
+  padding-right: 16px;
+}
+#main:not(.hidden) #queue .item.closed .productCount {
+  flex: 1;
+  padding: 0 16px;
+  display: block;
+  border-left: 2px solid #e31837;
+}
+#main:not(.hidden) #queue .item.closed .total {
+  padding-left: 16px;
+}
+#main:not(.hidden) #queue .item.closed .total .price {
+  position: unset;
+  right: unset;
+  padding: 0 0 0 32px;
+}
+#main:not(.hidden) #queue .item.closed ul {
+  display: none;
+}
+#main:not(.hidden) #status {
+  flex: 2 0 250px;
+}
+#main:not(.hidden) #status > div {
+  background: #eee;
+  padding: 32px;
+}
+#main:not(.hidden) #status > div:not(:last-child) {
+  margin-bottom: 32px;
+}
+#main:not(.hidden) #status > div:not(:first-child) {
+  margin-top: 32px;
+}
 
 /*# sourceMappingURL=style.css.map */

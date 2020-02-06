@@ -1,6 +1,7 @@
 function drawData(data) {
     drawQueue(data.queue);
     drawStatus(data.status);
+    drawIngredients(data.ingredients);
 }
 
 function drawStatus(status) {
@@ -22,6 +23,24 @@ function drawStatus(status) {
         let select = createStatusSelect(status[i].status, status[i].table);
         select.classList.add('status');
         table.appendChild(select);
+    }
+}
+
+function drawIngredients(ingredients) {
+    let ingredientDom =  document.getElementById('ingredients');
+   ingredientDom.innerHTML = "";
+    for (let i = 0; i < ingredients.length; i++){
+        let ingredient = document.createElement('div');
+        ingredientDom.appendChild(ingredient);
+        let ingredientTitle = document.createElement('h4');
+        let ingredientNumber = document.createElement('span');
+        let ingredientIdentifier = document.createElement('span');
+        ingredient.appendChild(ingredientTitle);
+        ingredient.appendChild(ingredientNumber);
+        ingredient.appendChild(ingredientIdentifier);
+        ingredientTitle.innerText = ingredients[i].name;
+        ingredientNumber.innerText = ingredients[i].amount;
+        ingredientIdentifier.innerText = ingredients[i].identifier;
     }
 }
 
