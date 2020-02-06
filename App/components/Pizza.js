@@ -22,9 +22,9 @@ class Pizza extends Component {
                         })
                     }}
                 </ProductConsumer>
-                <TouchableOpacity onPress={()=>{this.props.setRoute("home")}} style={styles.button}><Text style={styles.buttonTxt}>Back</Text></TouchableOpacity>
                 {/*Rick Pizza form goes here (you can remove the title ofcourse)*/}
                 </View>
+                <TouchableOpacity onPress={()=>{this.props.setRoute("home")}} style={styles.button}><Text style={styles.buttonTxt}>Back</Text></TouchableOpacity>
             </View>
         );
     }
