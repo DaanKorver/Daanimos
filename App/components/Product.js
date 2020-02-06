@@ -24,12 +24,12 @@ class Product extends Component {
                         {(value) => (
                             <View style={styles.pizzaButtonContainer} onPress={() => value.handleDetail(id)}>
 
-                                <TouchableOpacity style={styles.pizzaButton}  disabled={inCart ? true:false} onPress={() => {value.addToCart(id);}}>
+                                <TouchableOpacity style={styles.pizzaButton}  disabled={inCart ? true:false} onPress={() => {value.addToCart(id), this.state.product.inCart = true;}}>
                                     <Text style={styles.buttonTxt}>Add to Cart</Text>
                                     {/* {inCart?(<Text disabled>In cart</Text>):(<i className="fas fa-cart-plus"/>)} */}
                                 </TouchableOpacity>
                                 
-                                <TouchableOpacity style={styles.pizzaButton} onPress={() => {value.removeItem(id);}}>
+                                <TouchableOpacity style={styles.pizzaButton} onPress={() => {value.removeItem(id), this.state.product.inCart = false;}}>
                                     <Text style={styles.buttonTxt}>Remove from Cart</Text>
                                 </TouchableOpacity>
                             </View>

@@ -13,9 +13,7 @@ class ProductList extends Component {
     render() {
         return (
             <React.Fragment>
-                <View className="py-5">
-                    <View className="container">
-                        <View className="row">
+                <View>
                             <ProductConsumer>
                                     {value => {
                                         return this.state.products.map( product =>{
@@ -34,8 +32,6 @@ class ProductList extends Component {
                                     return <CartTotals value={value}></CartTotals>
                                 }}
                             </ProductConsumer>
-                        </View>
-                    </View>
                 </View>
             </React.Fragment>
         );

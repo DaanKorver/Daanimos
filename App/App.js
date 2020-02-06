@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Drinks from './components/Drinks'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
+import Cart from './components/Cart/Cart'
 import {ProductProvider, ProductConsumer} from "./context";
 import CartTotals from "./components/Cart/CartTotals";
 import {styles} from './AppStyle';
