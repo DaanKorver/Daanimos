@@ -5,14 +5,19 @@ import Drinks from './components/Drinks'
 import Connect from './components/Connect'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
+import {ProductProvider, ProductConsumer} from "./context";
+import CartTotals from "./components/Cart/CartTotals";
 import {styles} from './AppStyle';
 import io from "socket.io-client";
+import {ScreenOrientation} from 'expo';
+import Product from "./components/Product";
+import CartList from "./components/Cart/CartList";
 
 export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'connect',connected: false, price: 0};
+        this.state = {route: 'connect', connected: false, price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
@@ -23,15 +28,15 @@ export default class DaanimosApp extends Component {
     getRoute() {
         switch (this.state.route) {
             case 'connect':
-                return <Connect makeSocket={this.makeSocket} />;
+                return <Connect makeSocket={this.makeSocket}/>;
             case 'home':
                 return <Home setRoute={this.setRoute}/>;
             case 'drinks':
-                return <Drinks/>;
+                return <Drinks setRoute={this.setRoute}/>;
             case 'extras':
-                return <Extras/>;
+                return <Extras setRoute={this.setRoute}/>;
             case 'pizza':
-                return <Pizza/>;
+                return <Pizza setRoute={this.setRoute}/>;
             default:
                 return ''
         }
@@ -43,7 +48,7 @@ export default class DaanimosApp extends Component {
         });
     }
 
-    makeSocket(uri){
+    makeSocket(uri) {
         this.socket = new io(uri);
 
         this.socket.on("connect", () => {
@@ -53,24 +58,30 @@ export default class DaanimosApp extends Component {
     }
 
     componentDidMount() {
+        // ScreenOrientation.lockAsync(ScreenOrientation.Orientation.LANDSCAPE);
         StatusBar.setHidden(true);
     }
 
     render() {
         return (
+
             <View style={{flex: 1}}>
-                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                    <TouchableOpacity onPress={() => {
-                        this.setRoute("home")
-                    }}><Text style={styles.button}>Home</Text></TouchableOpacity>
-                    {this.state.connected ? <Text>Connected!</Text> : <Text>No connection..</Text>}
-                </View>
                 <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
-                    <View style={styles.main}>
+                    <View style={this.state.route !== 'home' ? styles.main : styles.home}>
                         {this.getRoute()}
                     </View>
+                    <ProductProvider>
+                        {/*<View>*/}
+                        {/*    <ProductConsumer>*/}
+                        {/*        {value => {*/}
+                        {/*            return <CartTotals value={value}></CartTotals>*/}
+                        {/*        }}*/}
+                        {/*    </ProductConsumer>*/}
+                        {/*</View>*/}
+                    </ProductProvider>
                 </ImageBackground>
             </View>
-        );
+    )
+        ;
     }
 }
