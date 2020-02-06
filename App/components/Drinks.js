@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {styles} from '../AppStyle';
+import {ProductConsumer} from "../context";
+import Product from "./Product";
+import {products} from "../data";
 
-
-class Drinks extends Component {
-
+class Pizza extends Component {
+    state = {
+        products: products,
+    }
     render() {
         return (
             <View style={styles.container}>
+                <Text style={styles.red}>Pizza</Text>
                 <ProductConsumer>
                     {value => {
-                        return this.state.products.map( product =>{
+                        return products.map( product =>{
                             if (product.type == "drink") {
                                 return <Product key={product.id} product={product}
                                 />
@@ -18,11 +23,10 @@ class Drinks extends Component {
                         })
                     }}
                 </ProductConsumer>
-
                 <TouchableOpacity onPress={()=>{this.props.setRoute("home")}} style={styles.button}><Text style={styles.buttonTxt}>Back</Text></TouchableOpacity>
             </View>
         );
     }
 }
 
-export default Drinks;
+export default Pizza;
