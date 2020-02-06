@@ -5,19 +5,15 @@ import Drinks from './components/Drinks'
 import Connect from './components/Connect'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
-import {ProductProvider, ProductConsumer} from "./context";
-import CartTotals from "./components/Cart/CartTotals";
 import {styles} from './AppStyle';
 import io from "socket.io-client";
 import {ScreenOrientation} from 'expo';
-import Product from "./components/Product";
-import CartList from "./components/Cart/CartList";
 
 export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'connect',productView: false, connected: false, price: 0};
+        this.state = {route: 'connect', price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
@@ -28,32 +24,20 @@ export default class DaanimosApp extends Component {
     getRoute() {
         switch (this.state.route) {
             case 'connect':
-                this.setProductView(false);
                 return <Connect makeSocket={this.makeSocket}/>;
             case 'home':
-                this.setProductView(false);
                 return <Home setRoute={this.setRoute}/>;
             case 'drinks':
-                this.setProductView(true);
                 return <Drinks setRoute={this.setRoute}/>;
             case 'extras':
-                this.setProductView(true);
                 return <Extras setRoute={this.setRoute}/>;
             case 'pizza':
-                this.setProductView(true);
                 return <Pizza setRoute={this.setRoute}/>;
             default:
                 return ''
         }
     }
-
-    setProductView(bool){
-        if (this.state.productView !== bool){
-            this.setState({productView:bool});
-        }
-    }
-
-    setRoute(routeName) {
+    setRoute(routeName){
         this.setState({
             route: routeName,
         });
@@ -75,23 +59,12 @@ export default class DaanimosApp extends Component {
 
     render() {
         return (
-
-            <View style={{flex: 1}}>
+            <View
+                style={{flex: 1}}>
                 <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
                     <View style={this.state.route !== 'home' ? styles.main : styles.home}>
                         {this.getRoute()}
                     </View>
-                    {this.state.productView ?
-                        <ProductProvider>
-                            <View>
-                                <ProductConsumer>
-                                    {value => {
-                                        return <CartTotals value={value}></CartTotals>
-                                    }}
-                                </ProductConsumer>
-                            </View>
-                        </ProductProvider>
-                    : null}
                 </ImageBackground>
             </View>
     )
