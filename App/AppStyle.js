@@ -73,6 +73,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 10,
         left: 10,
+    },
+    simpleButton: {
+        padding: 8,
+        backgroundColor: "#663399",
+    },
+    buttonText: {
+        color: '#FFF'
     }
 });
 

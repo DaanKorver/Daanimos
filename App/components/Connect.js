@@ -41,8 +41,8 @@ class Connect extends Component {
                         this.handleBarCodeScanned(data)
                     }}/>
                 <Text>{this.state.uri}</Text>
-                {this.state.scanned ? <TouchableOpacity onPress={() => { this.setState({uri: '', scanned: false})}}><Text>Scan Again</Text></TouchableOpacity> : <Text>No scan yet</Text>}
-                <TouchableOpacity onPress={() => { this.props.makeSocket(this.state.uri) }}><Text>Connect</Text></TouchableOpacity>
+                {this.state.scanned ? <TouchableOpacity style={styles.simpleButton} onPress={() => { this.setState({uri: '', scanned: false})}}><Text style={styles.buttonText}>Scan Again</Text></TouchableOpacity> : <Text>No scan yet</Text>}
+                <TouchableOpacity style={styles.simpleButton} onPress={() => { this.props.makeSocket(this.state.uri) }}><Text style={styles.buttonText}>Connect</Text></TouchableOpacity>
             </View>
         );
     }
