@@ -1,0 +1,479 @@
+Index: Socket/server.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Socket/server.js	(revision b740d6b7f9543ffe97da18d525a8d6a738a64f7f)
++++ Socket/server.js	(date 1580979707526)
+@@ -6,6 +6,7 @@
+ let login = {username: 'admin', password: '123'};
+ let data = {orders: [], ingredient: []};
+ var fs = require('fs');
++let port = 3000;
+ 
+ fs.readFile('appstorage.json', function (err, newdata) {
+     data = JSON.parse(newdata, 'utf8');
+@@ -60,7 +61,21 @@
+     });
+ }
+ 
+-server.listen(3000);
++
++var ifaces = require('os').networkInterfaces();
++var ifaceKeys = Object.keys(ifaces);
++let latestIpv4 = '';
++for (let i = 0; i < ifaceKeys.length; i++){
++    let ipv4 = ifaces[ifaceKeys[i]].find(a => a.family === 'IPv4');
++    if (!!ipv4){
++        latestIpv4 = ipv4.address
++    }
++}
++
++server.listen(port, function(){
++    console.log("Server started on http://" + latestIpv4 + ":" + port + "/");
++});
++
+ 
+ app.use(express.static('.'));
+ 
+Index: Socket/appstorage.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Socket/appstorage.json	(revision b740d6b7f9543ffe97da18d525a8d6a738a64f7f)
++++ Socket/appstorage.json	(date 1580978607700)
+@@ -1,148 +1,1 @@
+-{
+-  "orders": [
+-    {
+-      "table": 1,
+-      "status": 3,
+-      "items": [
+-        {
+-          "type" : "pizza",
+-          "name" : "hawaii",
+-          "price" : 8.0,
+-          "ingredientsUsed": [
+-            {"pizzaDough" : 1},
+-            {"ham" : 2},
+-            {"cheese" : 0.2},
+-            {"pineapple" : 0.5}
+-          ],
+-          "extra": [
+-            {
+-              "name" : "extra cheese",
+-              "price" : 1.5,
+-              "extraIngredient" : {"cheese" : 0.2}
+-            }
+-          ]
+-        },
+-        {
+-          "type" : "drink",
+-          "name" : "coke",
+-          "price" : 2.5,
+-          "ingredientsUsed": [
+-            {"coke" : 0.33}
+-          ],
+-          "extra": [
+-            {
+-              "name" : "big",
+-              "price" : 0.75,
+-              "extraIngredient" : {"coke" : 0.22}
+-            }
+-          ]
+-        }
+-      ]
+-    },
+-    {
+-      "table": 2,
+-      "status": 1,
+-      "items": [
+-        {
+-          "type" : "pizza",
+-          "name" : "hawaii",
+-          "price" : 8.0,
+-          "ingredientsUsed": [
+-            {"pizzaDough" : 1},
+-            {"ham" : 2},
+-            {"cheese" : 0.2},
+-            {"pineapple" : 0.5}
+-          ],
+-          "extra": [
+-            {
+-              "name" : "extra cheese",
+-              "price" : 1.5,
+-              "extraIngredient" : {"cheese" : 0.2}
+-            }
+-          ]
+-        },
+-        {
+-          "type" : "drink",
+-          "name" : "coke",
+-          "price" : 2.5,
+-          "ingredientsUsed": [
+-            {"coke" : 0.33}
+-          ],
+-          "extra": [
+-            {
+-              "name" : "big",
+-              "price" : 0.75,
+-              "extraIngredient" : {"coke" : 0.22}
+-            }
+-          ]
+-        }
+-      ]
+-    },
+-    {
+-      "table": 3,
+-      "status": 0,
+-      "items": [
+-        {
+-          "type" : "pizza",
+-          "name" : "hawaii",
+-          "price" : 8.0,
+-          "ingredientsUsed": [
+-            {"pizzaDough" : 1},
+-            {"ham" : 2},
+-            {"cheese" : 0.2},
+-            {"pineapple" : 0.5}
+-          ],
+-          "extra": [
+-            {
+-              "name" : "extra cheese",
+-              "price" : 1.5,
+-              "extraIngredient" : {"cheese" : 0.2}
+-            }
+-          ]
+-        },
+-        {
+-          "type" : "drink",
+-          "name" : "coke",
+-          "price" : 2.5,
+-          "ingredientsUsed": [
+-            {"coke" : 0.33}
+-          ],
+-          "extra": [
+-            {
+-              "name" : "big",
+-              "price" : 0.75,
+-              "extraIngredient" : {"coke" : 0.22}
+-            }
+-          ]
+-        }
+-      ]
+-    }
+-  ],
+-  "ingredients": [
+-    {
+-      "name": "pizzaDough",
+-      "amount": 842,
+-      "identifier": "piece(s)"
+-    },
+-    {
+-      "name": "ham",
+-      "amount": 328,
+-      "identifier": "slice(s)"
+-    },
+-    {
+-      "name": "cheese",
+-      "amount": 83,
+-      "identifier": "kg"
+-    },
+-    {
+-      "name": "pineapple",
+-      "amount": 32,
+-      "identifier": "cans"
+-    },
+-    {
+-      "name": "coke",
+-      "amount": 34,
+-      "identifier": "liters"
+-    }
+-  ]
+-}
+\ No newline at end of file
++{"orders":[{"table":1,"status":3,"items":[{"type":"pizza","name":"hawaii","price":8,"ingredientsUsed":[{"pizzaDough":1},{"ham":2},{"cheese":0.2},{"pineapple":0.5}],"extra":[{"name":"extra cheese","price":1.5,"extraIngredient":{"cheese":0.2}}]},{"type":"drink","name":"coke","price":2.5,"ingredientsUsed":[{"coke":0.33}],"extra":[{"name":"big","price":0.75,"extraIngredient":{"coke":0.22}}]}]},{"table":2,"status":1,"items":[{"type":"pizza","name":"hawaii","price":8,"ingredientsUsed":[{"pizzaDough":1},{"ham":2},{"cheese":0.2},{"pineapple":0.5}],"extra":[{"name":"extra cheese","price":1.5,"extraIngredient":{"cheese":0.2}}]},{"type":"drink","name":"coke","price":2.5,"ingredientsUsed":[{"coke":0.33}],"extra":[{"name":"big","price":0.75,"extraIngredient":{"coke":0.22}}]}]},{"table":3,"status":0,"items":[{"type":"pizza","name":"hawaii","price":8,"ingredientsUsed":[{"pizzaDough":1},{"ham":2},{"cheese":0.2},{"pineapple":0.5}],"extra":[{"name":"extra cheese","price":1.5,"extraIngredient":{"cheese":0.2}}]},{"type":"drink","name":"coke","price":2.5,"ingredientsUsed":[{"coke":0.33}],"extra":[{"name":"big","price":0.75,"extraIngredient":{"coke":0.22}}]}]}],"ingredients":[{"name":"pizzaDough","amount":842,"identifier":"piece(s)"},{"name":"ham","amount":328,"identifier":"slice(s)"},{"name":"cheese","amount":83,"identifier":"kg"},{"name":"pineapple","amount":32,"identifier":"cans"},{"name":"coke","amount":34,"identifier":"liters"}]}
+\ No newline at end of file
+Index: Socket/drawData.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Socket/drawData.js	(revision b740d6b7f9543ffe97da18d525a8d6a738a64f7f)
++++ Socket/drawData.js	(date 1580978008509)
+@@ -1,6 +1,7 @@
+ function drawData(data) {
+     drawQueue(data.queue);
+     drawStatus(data.status);
++    drawIngredients(data.ingredients);
+ }
+ 
+ function drawStatus(status) {
+@@ -25,6 +26,24 @@
+     }
+ }
+ 
++function drawIngredients(ingredients) {
++    let ingredientDom =  document.getElementById('ingredients');
++   ingredientDom.innerHTML = "";
++    for (let i = 0; i < ingredients.length; i++){
++        let ingredient = document.createElement('div');
++        ingredientDom.appendChild(ingredient);
++        let ingredientTitle = document.createElement('h4');
++        let ingredientNumber = document.createElement('span');
++        let ingredientIdentifier = document.createElement('span');
++        ingredient.appendChild(ingredientTitle);
++        ingredient.appendChild(ingredientNumber);
++        ingredient.appendChild(ingredientIdentifier);
++        ingredientTitle.innerText = ingredients[i].name;
++        ingredientNumber.innerText = ingredients[i].amount;
++        ingredientIdentifier.innerText = ingredients[i].identifier;
++    }
++}
++
+ function drawQueue(queue) {
+     //gets the Queue html dom element and clears it
+     let queueDom = document.getElementById('queue');
+Index: Socket/style.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Socket/style.scss	(revision b740d6b7f9543ffe97da18d525a8d6a738a64f7f)
++++ Socket/style.scss	(date 1580978208086)
+@@ -73,6 +73,13 @@
+     ~ #queue{
+       display: none;
+     }
++    > div {
++      background: #eee;
++      padding: $padding/2 $padding;
++      &:not(:last-child){
++        border-bottom: solid 1px $blue;
++      }
++    }
+     flex: 7;
+     padding-right: $padding;
+   }
+Index: Socket/style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Socket/style.css	(revision b740d6b7f9543ffe97da18d525a8d6a738a64f7f)
++++ Socket/style.css	(date 1580978208873)
+@@ -3,10 +3,11 @@
+   background: #006491;
+   margin: 0;
+   font-weight: 300;
+-  font-family: 'Roboto', sans-serif;
++  font-family: "Roboto", sans-serif;
+   min-height: 100vh;
+   display: flex;
+-  flex-direction: column; }
++  flex-direction: column;
++}
+ 
+ header {
+   display: flex;
+@@ -16,16 +17,20 @@
+   position: absolute;
+   width: 50%;
+   right: 0;
+-  padding: 32px; }
+-  header h1 {
+-    padding: 32px; }
+-  header img {
+-    max-height: 100%;
+-    width: auto; }
++  padding: 32px;
++}
++header h1 {
++  padding: 32px;
++}
++header img {
++  max-height: 100%;
++  width: auto;
++}
+ 
+ ul {
+   list-style: none;
+-  padding: 0; }
++  padding: 0;
++}
+ 
+ .holder {
+   position: relative;
+@@ -33,76 +38,105 @@
+   background: #fff;
+   padding: 32px;
+   margin: 32px;
+-  margin-top: 96px; }
++  margin-top: 96px;
++}
+ 
+ .hidden {
+-  display: none; }
++  display: none;
++}
+ 
+ #main:not(.hidden) {
+   display: flex;
+-  border: dashed 1px black; }
+-  #main:not(.hidden) > button {
+-    position: absolute;
+-    top: 0;
+-    background: #e31837;
+-    color: #fff;
+-    border: none;
+-    font-weight: 200;
+-    font-size: 1.2em;
+-    padding: 8px 16px;
+-    left: 0;
+-    transform: translateY(-50%); }
+-  #main:not(.hidden) #ingredients:not(.hidden) {
+-    flex: 7;
+-    padding-right: 32px; }
+-    #main:not(.hidden) #ingredients:not(.hidden) ~ #queue {
+-      display: none; }
+-  #main:not(.hidden) #queue {
+-    flex: 7;
+-    padding-right: 32px; }
+-    #main:not(.hidden) #queue .item {
+-      position: relative;
+-      background: #eee;
+-      padding: 32px; }
+-      #main:not(.hidden) #queue .item .productCount {
+-        display: none; }
+-      #main:not(.hidden) #queue .item .price {
+-        position: absolute;
+-        right: 0;
+-        padding: 0 32px;
+-        color: #006491;
+-        font-weight: 500; }
+-      #main:not(.hidden) #queue .item:not(:last-child) {
+-        margin-bottom: 32px; }
+-      #main:not(.hidden) #queue .item:not(:first-child) {
+-        margin-top: 32px; }
+-      #main:not(.hidden) #queue .item.closed {
+-        display: flex;
+-        justify-content: flex-start;
+-        align-items: center; }
+-        #main:not(.hidden) #queue .item.closed h3 {
+-          padding-right: 16px; }
+-        #main:not(.hidden) #queue .item.closed .productCount {
+-          flex: 1;
+-          padding: 0 16px;
+-          display: block;
+-          border-left: 2px solid #e31837; }
+-        #main:not(.hidden) #queue .item.closed .total {
+-          padding-left: 16px; }
+-          #main:not(.hidden) #queue .item.closed .total .price {
+-            position: unset;
+-            right: unset;
+-            padding: 0 0 0 32px; }
+-        #main:not(.hidden) #queue .item.closed ul {
+-          display: none; }
+-  #main:not(.hidden) #status {
+-    flex: 2 0 250px; }
+-    #main:not(.hidden) #status > div {
+-      background: #eee;
+-      padding: 32px; }
+-      #main:not(.hidden) #status > div:not(:last-child) {
+-        margin-bottom: 32px; }
+-      #main:not(.hidden) #status > div:not(:first-child) {
+-        margin-top: 32px; }
++  border: dashed 1px black;
++}
++#main:not(.hidden) > button {
++  position: absolute;
++  top: 0;
++  background: #e31837;
++  color: #fff;
++  border: none;
++  font-weight: 200;
++  font-size: 1.2em;
++  padding: 8px 16px;
++  left: 0;
++  transform: translateY(-50%);
++}
++#main:not(.hidden) #ingredients:not(.hidden) {
++  flex: 7;
++  padding-right: 32px;
++}
++#main:not(.hidden) #ingredients:not(.hidden) ~ #queue {
++  display: none;
++}
++#main:not(.hidden) #ingredients:not(.hidden) > div {
++  background: #eee;
++  padding: 16px 32px;
++}
++#main:not(.hidden) #ingredients:not(.hidden) > div:not(:last-child) {
++  border-bottom: solid 1px #006491;
++}
++#main:not(.hidden) #queue {
++  flex: 7;
++  padding-right: 32px;
++}
++#main:not(.hidden) #queue .item {
++  position: relative;
++  background: #eee;
++  padding: 32px;
++}
++#main:not(.hidden) #queue .item .productCount {
++  display: none;
++}
++#main:not(.hidden) #queue .item .price {
++  position: absolute;
++  right: 0;
++  padding: 0 32px;
++  color: #006491;
++  font-weight: 500;
++}
++#main:not(.hidden) #queue .item:not(:last-child) {
++  margin-bottom: 32px;
++}
++#main:not(.hidden) #queue .item:not(:first-child) {
++  margin-top: 32px;
++}
++#main:not(.hidden) #queue .item.closed {
++  display: flex;
++  justify-content: flex-start;
++  align-items: center;
++}
++#main:not(.hidden) #queue .item.closed h3 {
++  padding-right: 16px;
++}
++#main:not(.hidden) #queue .item.closed .productCount {
++  flex: 1;
++  padding: 0 16px;
++  display: block;
++  border-left: 2px solid #e31837;
++}
++#main:not(.hidden) #queue .item.closed .total {
++  padding-left: 16px;
++}
++#main:not(.hidden) #queue .item.closed .total .price {
++  position: unset;
++  right: unset;
++  padding: 0 0 0 32px;
++}
++#main:not(.hidden) #queue .item.closed ul {
++  display: none;
++}
++#main:not(.hidden) #status {
++  flex: 2 0 250px;
++}
++#main:not(.hidden) #status > div {
++  background: #eee;
++  padding: 32px;
++}
++#main:not(.hidden) #status > div:not(:last-child) {
++  margin-bottom: 32px;
++}
++#main:not(.hidden) #status > div:not(:first-child) {
++  margin-top: 32px;
++}
+ 
+ /*# sourceMappingURL=style.css.map */
