@@ -25,26 +25,25 @@ function getUsefullData() {
 }
 
 
-
 function getOrder(order) {
     let buffered = {
         table: order.table,
         order: [],
         isOpen: false,
     };
-    for (let i = 0; i < order.items.length; i++){
-     let item = {
-         name: order.items[i].type + " " + order.items[i].name,
-         price: order.items[i].price,
-         extras: []
-     };
-     let extra = order.items[i].extra;
-     for (let ii = 0; ii < extra.length; ii++){
-         item.extras.push({name: extra[ii].name,price: extra[ii].price})
-     }
-     buffered.order.push(item);
+    for (let i = 0; i < order.items.length; i++) {
+        let item = {
+            name: order.items[i].type + " " + order.items[i].name,
+            price: order.items[i].price,
+            extras: []
+        };
+        let extra = order.items[i].extra;
+        for (let ii = 0; ii < extra.length; ii++) {
+            item.extras.push({name: extra[ii].name, price: extra[ii].price})
+        }
+        buffered.order.push(item);
     }
-    if (order.status){
+    if (order.status) {
         buffered.isOpen = true;
     }
     return buffered;
@@ -64,14 +63,14 @@ function updateFile() {
 var ifaces = require('os').networkInterfaces();
 var ifaceKeys = Object.keys(ifaces);
 let latestIpv4 = '';
-for (let i = 0; i < ifaceKeys.length; i++){
+for (let i = 0; i < ifaceKeys.length; i++) {
     let ipv4 = ifaces[ifaceKeys[i]].find(a => a.family === 'IPv4' && a.address !== '127.0.0.1');
-    if (!!ipv4){
+    if (!!ipv4) {
         latestIpv4 = ipv4.address;
     }
 }
 let url = "http://" + latestIpv4 + ":" + port + "/";
-server.listen(port, function(){
+server.listen(port, function () {
     console.log("Server started on " + url);
 });
 
@@ -103,20 +102,33 @@ socket.on('connection', function (client) {
         data.orders.find(q => q.table === update.table).status = update.status;
         dataUpdate();
     });
-    client.on('order push', function (order) {
-        data.orders.push(order);
-        //TODO: ingredient buffer here
-        dataUpdate();
-    });
 
     client.on('ingredient update', function (ingredient) {
-       data.ingredients.find(i => i.name === ingredient.name).amount = parseInt(ingredient.amount);
+        data.ingredients.find(i => i.name === ingredient.name).amount = parseInt(ingredient.amount);
         dataUpdate();
     });
 
-    client.on("send order", function (data,table) {
-        console.log(data);
-        console.log(table);
+    client.on("send order", function (appdata, table) {
+        let buffer = {
+            table: table,
+            status: 0,
+            items: [],
+        };
+        for (let i = 0; i < appdata.length; i++) {
+            let object =
+                {
+                    type: appdata[i].type,
+                    name: appdata[i].name,
+                    price: appdata[i].price,
+                    extra:[],
+                    ingredientsUsed: appdata[i].ingredientsUsed
+                };
+                for (let ii = 0; ii < appdata[i].count; ii++){
+                buffer.items.push(object);
+                }
+        }
+        data.orders.push(buffer);
+        dataUpdate();
     });
 
     function dataUpdate(newdata = data) {

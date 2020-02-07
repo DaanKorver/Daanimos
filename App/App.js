@@ -56,6 +56,7 @@ export default class DaanimosApp extends Component {
         if (this.state.connected) {
             this.state.socket.emit("send order", data, this.state.table);
             alert('ORDER SENT');
+
         } else {
             alert('no connection')
         }
