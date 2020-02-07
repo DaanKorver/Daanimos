@@ -9,12 +9,14 @@ class Product extends Component {
         product: this.props.product
     }
     render() {
-        const {id, name, price, inCart} = this.state.product;
+        const {id, name, price, type, inCart} = this.state.product;
         return (
                 <View style={styles.product}>
-                    <View style={styles.productImageContainer}>                            
-                        <Image style={styles.productImage}
-                        source={require("../assets/icons/pizza.png")}/>
+                    <View style={styles.productImageContainer}>
+                    {type === 'pizza' ?  <Image style={styles.productImage}
+                        source={require("../assets/icons/pizza.png")}/> :  <Image style={styles.productImage}
+                        source={require("../assets/icons/drinks.png")}/>}                     
+                       
                     </View>
                     <View style={styles.priceContainer}>
                         <Text style={styles.pizzaName}>{name}</Text>
