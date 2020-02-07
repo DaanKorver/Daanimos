@@ -5,6 +5,7 @@ import Drinks from './components/Drinks'
 import Connect from './components/Connect'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
+import Cart from './components/Cart/Cart'
 import {ProductProvider, ProductConsumer} from "./context";
 import CartTotals from "./components/Cart/CartTotals";
 import {styles} from './AppStyle';
@@ -37,6 +38,8 @@ export default class DaanimosApp extends Component {
                 return <Extras setRoute={this.setRoute}/>;
             case 'pizza':
                 return <Pizza setRoute={this.setRoute}/>;
+            case 'cart':
+                return <Cart setRoute={this.setRoute}/>;
             default:
                 return ''
         }
