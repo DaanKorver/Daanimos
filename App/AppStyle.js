@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
         height: heightPercentageToDP("30"),
         padding: 24,
         borderBottomWidth: 2,
-        backgroundColor: "green"
     },
     cartProduct: {
         fontSize: 24,
