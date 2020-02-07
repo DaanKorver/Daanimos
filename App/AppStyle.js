@@ -4,12 +4,12 @@ import { Dimensions, PixelRatio } from 'react-native';
 let screenWidth = Dimensions.get('window').width;
 let screenHeight = Dimensions.get('window').height;
 
-const widthPercentageToDP = widthPercent => {
+let widthPercentageToDP = widthPercent => {
     const elemWidth = typeof widthPercent === "number" ? widthPercent : parseFloat(widthPercent);
     return PixelRatio.roundToNearestPixel(screenWidth * elemWidth / 100);
 };
 
-const heightPercentageToDP = heightPercent => {
+let heightPercentageToDP = heightPercent => {
     const elemHeight = typeof heightPercent === "number" ? heightPercent : parseFloat(heightPercent);
     return PixelRatio.roundToNearestPixel(screenHeight * elemHeight / 100);
 };
@@ -147,10 +147,10 @@ const styles = StyleSheet.create({
         padding: heightPercentageToDP("2"),
     },
     cartContainer: {
-        flex: 1,
         width: widthPercentageToDP("100") - 46,
+        height: heightPercentageToDP("30"),
         padding: 24,
-        borderBottomWidth: 2
+        borderBottomWidth: 2,
     },
     cartProduct: {
         fontSize: 24,
@@ -183,6 +183,16 @@ const styles = StyleSheet.create({
     totalPrice: {
         fontWeight: "bold",
         fontSize: 24
+    },
+    connectContainer: {
+        display: "flex",
+        flexDirection: "row"
+    },
+    simpleButton: {
+        padding: 5,
+        backgroundColor: "crimson",
+        marginLeft: 10,
+        marginRight: 10
     }
 });
 

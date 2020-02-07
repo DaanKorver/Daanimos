@@ -64,7 +64,14 @@
                 document.getElementById('main').classList.remove('hidden');
                 socket.emit('request data');
             }
-            new QRCode(document.getElementById("qrCode"), url);
+            new QRCode(document.getElementById("qrCode"), {
+                text: url,
+                width: 1024,
+                height: 1024,
+                colorDark : "#006491",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
 
         });
         socket.on('data update', (newdata) => {

@@ -1,17 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-export default function Succes({value}){
+import {View, Text, Button} from 'react-native';
+export default function Succes({value, emit}){
     const{cartTotal} = value;
+    let myEmit = emit;
     return (
         <React.Fragment>
-            {/* <View>
+            <View>
                 <View>
                        <Text>
-                           TotaalPenis:
+                           Totaal:
                        </Text>
                             <Text>€ {cartTotal}</Text>
                         </View>
-            </View> */}
+                <Button onPress={()=>{myEmit(value.cart)}} title={"place order"}/>
+            </View>
         </React.Fragment>
     );
 }
