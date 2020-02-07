@@ -49,8 +49,8 @@ ul {
   transition: .1s all; }
   #qrCode:hover {
     cursor: none;
-    max-width: 256px;
-    max-height: 256px; }
+    max-width: 100vw;
+    max-height: 100vh; }
   #qrCode canvas {
     display: none; }
   #qrCode img {

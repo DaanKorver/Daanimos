@@ -65,9 +65,9 @@ var ifaces = require('os').networkInterfaces();
 var ifaceKeys = Object.keys(ifaces);
 let latestIpv4 = '';
 for (let i = 0; i < ifaceKeys.length; i++){
-    let ipv4 = ifaces[ifaceKeys[i]].find(a => a.family === 'IPv4');
+    let ipv4 = ifaces[ifaceKeys[i]].find(a => a.family === 'IPv4' && a.address !== '127.0.0.1');
     if (!!ipv4){
-        latestIpv4 = ipv4.address
+        latestIpv4 = ipv4.address;
     }
 }
 let url = "http://" + latestIpv4 + ":" + port + "/";
@@ -83,7 +83,7 @@ var socket = io.listen(server);
 
 // Add a connect listener
 socket.on('connection', function (client) {
-    //TODO: console.log("CONNECT:", client.id);
+    TODO: console.log("CONNECT:", client.id);
 
     client.on('send login', function (data) {
         // Poor login system for demo purposes
@@ -91,7 +91,7 @@ socket.on('connection', function (client) {
     });
     client.on('disconnect', function () {
         // clearInterval(interval);
-        //TODO: console.log("DISCONNENT", client.id);
+        TODO: console.log("DISCONNENT", client.id);
     });
     client.on('request data', function () {
         dataUpdate();
@@ -112,6 +112,11 @@ socket.on('connection', function (client) {
     client.on('ingredient update', function (ingredient) {
        data.ingredients.find(i => i.name === ingredient.name).amount = parseInt(ingredient.amount);
         dataUpdate();
+    });
+
+    client.on("send order", function (data,table) {
+        console.log(data);
+        console.log(table);
     });
 
     function dataUpdate(newdata = data) {
