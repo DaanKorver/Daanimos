@@ -4,14 +4,14 @@ export default function Succes({value}){
     const{cartTotal} = value;
     return (
         <React.Fragment>
-            <View>
+            {/* <View>
                 <View>
                        <Text>
-                           Totaal:
+                           TotaalPenis:
                        </Text>
                             <Text>€ {cartTotal}</Text>
                         </View>
-            </View>
+            </View> */}
         </React.Fragment>
     );
 }
