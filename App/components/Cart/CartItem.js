@@ -1,39 +1,39 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import { styles } from '../../AppStyle';
 
 export default function CartItem({item,value}){
     const{id,name,price,total,count} = item;
     const {increment,decrement,removeItem} = value;
     return (
-        <View>
-                <Text>
-                    product : {name}
+        <View style={styles.cartContainer}>
+                <Text style={styles.cartProduct}>
+                    Product: {name}
                 </Text>
             <View>
-                <Text>
-                    price : {price}
+                <Text style={styles.cartPrice}>
+                    Prijs: €{price}
                 </Text>
             </View>
-            <View>
-                <Text onPress={() =>decrement(id)}>
+            <View style={styles.cartAmount}>
+                <Text style={styles.increment} onPress={() =>decrement(id)}>
                     -
                 </Text>
 
-                <Text>
+                <Text style={styles.count}>
                  {count}
                 </Text>
-                <Text onPress={() =>increment(id)}>
+                <Text style={styles.increment} onPress={() =>increment(id)}>
                     +
                 </Text>
+            </View>
+            <View style={styles.countContainer}>
+                <Text style={styles.totalPrice}>€{price * count}</Text>
             </View>
 
             <View>
                 <View onPress={()=>removeItem(id)}>
                 </View>
-            </View>
-
-            <View>
-                <Text>Totaal: € {total}</Text>
             </View>
         </View>
     );

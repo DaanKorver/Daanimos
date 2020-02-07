@@ -9,27 +9,29 @@ class Product extends Component {
         product: this.props.product
     }
     render() {
-        const {id, name, price, inCart} = this.state.product;
+        const {id, name, price, type, inCart} = this.state.product;
         return (
                 <View style={styles.product}>
-                    <View style={styles.productImageContainer}>                            
-                        <Image style={styles.productImage}
-                        source={require(`../assets/${name}.png`)}/>
+                    <View style={styles.productImageContainer}>
+                    {type === 'pizza' ?  <Image style={styles.productImage}
+                        source={require("../assets/icons/pizza.png")}/> :  <Image style={styles.productImage}
+                        source={require("../assets/icons/drinks.png")}/>}                     
+                       
                     </View>
                     <View style={styles.priceContainer}>
-                        <Text style={styles.pizzaName}>Pizza {name}</Text>
+                        <Text style={styles.pizzaName}>{name}</Text>
                         <Text style={styles.pizzaPrice}>Prijs: € {price}</Text>
                     </View>
                     <ProductConsumer>
                         {(value) => (
                             <View style={styles.pizzaButtonContainer} onPress={() => value.handleDetail(id)}>
 
-                                <TouchableOpacity style={styles.pizzaButton}  disabled={inCart ? true:false} onPress={() => {value.addToCart(id);}}>
+                                <TouchableOpacity style={styles.pizzaButton}  disabled={inCart ? true:false} onPress={() => {value.addToCart(id), this.state.product.inCart = true;}}>
                                     <Text style={styles.buttonTxt}>Add to Cart</Text>
                                     {/* {inCart?(<Text disabled>In cart</Text>):(<i className="fas fa-cart-plus"/>)} */}
                                 </TouchableOpacity>
                                 
-                                <TouchableOpacity style={styles.pizzaButton} onPress={() => {value.removeItem(id);}}>
+                                <TouchableOpacity style={styles.pizzaButton} onPress={() => {value.removeItem(id), this.state.product.inCart = false;}}>
                                     <Text style={styles.buttonTxt}>Remove from Cart</Text>
                                 </TouchableOpacity>
                             </View>

@@ -4,12 +4,12 @@ import { Dimensions, PixelRatio } from 'react-native';
 let screenWidth = Dimensions.get('window').width;
 let screenHeight = Dimensions.get('window').height;
 
-const widthPercentageToDP = widthPercent => {
+let widthPercentageToDP = widthPercent => {
     const elemWidth = typeof widthPercent === "number" ? widthPercent : parseFloat(widthPercent);
     return PixelRatio.roundToNearestPixel(screenWidth * elemWidth / 100);
 };
 
-const heightPercentageToDP = heightPercent => {
+let heightPercentageToDP = heightPercent => {
     const elemHeight = typeof heightPercent === "number" ? heightPercent : parseFloat(heightPercent);
     return PixelRatio.roundToNearestPixel(screenHeight * elemHeight / 100);
 };
@@ -56,9 +56,9 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         backgroundColor: "#fff",
-        borderRadius: widthPercentageToDP("25") / 2,
-        width: widthPercentageToDP("25"),
-        height: widthPercentageToDP("25"),
+        borderRadius: widthPercentageToDP("20") / 2,
+        width: widthPercentageToDP("20"),
+        height: widthPercentageToDP("20"),
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -85,7 +85,9 @@ const styles = StyleSheet.create({
     },
     total: {
         color: "#fff",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        fontSize: 20,
+        alignSelf: "flex-end"
     },
     productContainer: {
         width: widthPercentageToDP("100") - 46,
@@ -94,7 +96,6 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        overflowX: "scroll"
     },
     product: {
         width: widthPercentageToDP("100") - 46,
@@ -144,6 +145,54 @@ const styles = StyleSheet.create({
         backgroundColor: "crimson",
         width: widthPercentageToDP("15"),
         padding: heightPercentageToDP("2"),
+    },
+    cartContainer: {
+        width: widthPercentageToDP("100") - 46,
+        height: heightPercentageToDP("30"),
+        padding: 24,
+        borderBottomWidth: 2,
+    },
+    cartProduct: {
+        fontSize: 24,
+        fontWeight: "bold"
+    },
+    cartPrice: {
+        fontSize: 16,
+        fontStyle: "italic",
+        marginBottom: 12
+    },
+    cartAmount: {
+        display: "flex",
+        flexDirection: "row"
+    },
+    increment: {
+        fontSize: 25,
+        fontWeight: "bold",
+    },
+    count: {
+        fontSize: 25,
+        fontWeight: "bold",
+        marginLeft: 10,
+        marginRight: 10
+    },
+    countContainer: {
+        position: "absolute",
+        top: 5,
+        right: 15
+    },
+    totalPrice: {
+        fontWeight: "bold",
+        fontSize: 24
+    },
+    connectContainer: {
+        display: "flex",
+        flexDirection: "row"
+    },
+    simpleButton: {
+        padding: 5,
+        backgroundColor: "crimson",
+        marginLeft: 10,
+        marginRight: 10
     }
 });
 

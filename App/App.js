@@ -5,6 +5,7 @@ import Drinks from './components/Drinks'
 import Connect from './components/Connect'
 import Extras from './components/Extras'
 import Pizza from './components/Pizza'
+import Cart from './components/Cart/Cart'
 import {ProductProvider, ProductConsumer} from "./context";
 import CartTotals from "./components/Cart/CartTotals";
 import {styles} from './AppStyle';
@@ -17,11 +18,12 @@ export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'home', connected: false, price: 0};
+        this.state = {route: 'connect',socket: null,table: 0, connected: false, price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
         this.setRoute = this.setRoute.bind(this);
+        this.emit = this.emit.bind(this);
         this.makeSocket = this.makeSocket.bind(this);
     }
 
@@ -37,6 +39,8 @@ export default class DaanimosApp extends Component {
                 return <Extras setRoute={this.setRoute}/>;
             case 'pizza':
                 return <Pizza setRoute={this.setRoute}/>;
+            case 'cart':
+                return <Cart emit={this.emit} setRoute={this.setRoute}/>;
             default:
                 return ''
         }
@@ -48,6 +52,15 @@ export default class DaanimosApp extends Component {
         }
     }
 
+    emit(data){
+        if (this.state.connected) {
+            this.state.socket.emit("send order", data, this.state.table);
+            alert('ORDER SENT');
+        } else {
+            alert('no connection')
+        }
+    }
+
     setRoute(routeName) {
         this.setState({
             route: routeName,
@@ -55,11 +68,13 @@ export default class DaanimosApp extends Component {
     }
 
     makeSocket(uri) {
-        this.socket = new io(uri);
+        let socket = new io(uri);
 
-        this.socket.on("connect", () => {
+        socket.on("connect", () => {
             this.setRoute("home");
             this.setState({connected: true})
+            this.setState({table: Math.round(Math.random()*1000)}); //TODO: bind this to input field or something
+            this.setState({socket: socket})
         });
     }
 
@@ -72,6 +87,7 @@ export default class DaanimosApp extends Component {
         return (
             <ProductProvider>
                 <View style={{flex: 1}}>
+                    <Text>{JSON.stringify(this.state.connected)}</Text>
                     <ImageBackground source={require("../App/assets/home.jpg")} style={styles.screen}>
                         <View style={this.state.route !== 'home' ? styles.main : styles.home}>
                             {this.getRoute()}
