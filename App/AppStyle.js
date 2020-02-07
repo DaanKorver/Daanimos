@@ -183,6 +183,16 @@ const styles = StyleSheet.create({
     totalPrice: {
         fontWeight: "bold",
         fontSize: 24
+    },
+    connectContainer: {
+        display: "flex",
+        flexDirection: "row"
+    },
+    simpleButton: {
+        padding: 5,
+        backgroundColor: "crimson",
+        marginLeft: 10,
+        marginRight: 10
     }
 });
 
