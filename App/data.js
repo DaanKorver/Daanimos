@@ -7,7 +7,7 @@ export const products = [
         size: '',
         inCart: false,
         count: 0,
-        total: 0
+        total: 0,
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ export const products = [
         size: '',
         inCart: false,
         count: 0,
-        total: 0
+        total: 0,
     },
     {
         id: 3,
@@ -27,6 +27,6 @@ export const products = [
         size: '',
         inCart: false,
         count: 0,
-        total: 0
+        total: 0,
     }
 ];
