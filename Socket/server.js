@@ -108,27 +108,27 @@ socket.on('connection', function (client) {
         dataUpdate();
     });
 
-    client.on("send order", function (data, table) {
+    client.on("send order", function (appdata, table) {
         let buffer = {
             table: table,
             status: 0,
             items: [],
         };
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < appdata.length; i++) {
             let object =
                 {
-                    type: data[i].type,
-                    name: data[i].name,
-                    price: data[i].price,
-                    ingredientsUsed: data[i].ingredientsUsed
+                    type: appdata[i].type,
+                    name: appdata[i].name,
+                    price: appdata[i].price,
+                    extra:[],
+                    ingredientsUsed: appdata[i].ingredientsUsed
                 };
-                console.log(data[i].count);
-                // for (let ii = 0; ii < data[i].count; i++){
-                // buffer.items.push(object);
-                // }
+                for (let ii = 0; ii < appdata[i].count; ii++){
+                buffer.items.push(object);
+                }
         }
-        console.log(data);
-        console.log(buffer);
+        data.orders.push(buffer);
+        dataUpdate();
     });
 
     function dataUpdate(newdata = data) {
