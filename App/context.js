@@ -6,14 +6,17 @@ const ProductContext = React.createContext();
 //consumer
 
 class ProductProvider extends Component {
+    // Set state
     state ={
         products:[],
         cart: [],
         cartTotal: 0,
     };
+    // Mount component
     componentDidMount(){
         this.setProducts();
     };
+    // Set products in cart
     setProducts = () => {
         let tempProducts = [];
         products.forEach(item => {
@@ -26,11 +29,13 @@ class ProductProvider extends Component {
         })
     };
 
+    // Get item with id
     getItem = (id) =>{
         const product = this.state.products.find(item => item.id ===id);
         return product;
     }
 
+    // Add product to cart
     addToCart = (id) => {
         let tempProducts = [...this.state.products];
         const index = tempProducts.indexOf(this.getItem(id));
@@ -45,6 +50,8 @@ class ProductProvider extends Component {
             this.addTotals();
         });
     };
+
+    // Add item toc art
     increment = (id) => {
         let tempCart = [...this.state.cart];
         const selectedProduct = tempCart.find(item=>item.id === id)
@@ -61,6 +68,8 @@ class ProductProvider extends Component {
             });
 
     };
+
+    // Decrement product in cart
     decrement = (id) => {
         let tempCart = [...this.state.cart];
         const selectedProduct = tempCart.find(item=>item.id === id)
@@ -81,6 +90,8 @@ class ProductProvider extends Component {
                 });
         }
     };
+
+    // Remove an item from cart
     removeItem = (id) => {
         let tempProducts = [...this.state.products];
         let tempCart = [...this.state.cart];
@@ -102,6 +113,8 @@ class ProductProvider extends Component {
             this.addTotals();
         });
     }
+
+    // Clear the whole cart
     clearCart = () =>{
         this.setState(()=>{
             return { cart: [] };
@@ -110,6 +123,8 @@ class ProductProvider extends Component {
             this.addTotals();
         });
     };
+
+    // Add to totals
     addTotals = () =>{
         let subTotal = 0;
         this.state.cart.map(item => (subTotal += item.total));
@@ -120,6 +135,7 @@ class ProductProvider extends Component {
         });
     };
 
+    // Render the provider
     render() {
         return (
             <ProductContext.Provider value={{
@@ -136,6 +152,7 @@ class ProductProvider extends Component {
     }
 }
 
+// Export a var as consumer
 const ProductConsumer = ProductContext.Consumer;
 
 export {ProductProvider,ProductConsumer};
