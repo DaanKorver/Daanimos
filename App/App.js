@@ -18,7 +18,7 @@ export default class DaanimosApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {route: 'home', connected: false, price: 0};
+        this.state = {route: 'home',socket: null, connected: false, price: 0};
 
         // This binding is necessary to make `this` work in the callback
         this.getRoute = this.getRoute.bind(this);
@@ -39,7 +39,7 @@ export default class DaanimosApp extends Component {
             case 'pizza':
                 return <Pizza setRoute={this.setRoute}/>;
             case 'cart':
-                return <Cart setRoute={this.setRoute}/>;
+                return <Cart emit={this.emit} setRoute={this.setRoute}/>;
             default:
                 return ''
         }
@@ -51,6 +51,13 @@ export default class DaanimosApp extends Component {
         }
     }
 
+    emit(){
+        if (this.state.connected) {
+            console.log('test');
+            this.state.socket.emit("send order", {"test1": "test2"});
+        }
+    }
+
     setRoute(routeName) {
         this.setState({
             route: routeName,
@@ -58,11 +65,12 @@ export default class DaanimosApp extends Component {
     }
 
     makeSocket(uri) {
-        this.socket = new io(uri);
+        let socket = new io(uri);
 
-        this.socket.on("connect", () => {
+        socket.on("connect", () => {
             this.setRoute("home");
             this.setState({connected: true})
+            this.setState({socket: socket})
         });
     }
 

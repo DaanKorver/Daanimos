@@ -19,7 +19,7 @@ class Cart extends Component {
                                 <React.Fragment>
                                     <CartList value={value}/>
                                     <CartTotals value={value}/>
-                                    <Succes value={value}/>
+                                    <Succes emit={this.props.emit} value={value}/>
                                 </React.Fragment>
                             )
                         }

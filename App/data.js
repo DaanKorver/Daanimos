@@ -7,7 +7,8 @@ export const products = [
         size: '',
         inCart: false,
         count: 0,
-        total: 0
+        total: 0,
+        ingredientsUsed: [{"pepperoni": 4}],
     },
     {
         id: 2,
@@ -17,7 +18,8 @@ export const products = [
         size: '',
         inCart: false,
         count: 0,
-        total: 0
+        total: 0,
+        ingredientsUsed: [{"cheese": 0.25}],
     },
     {
         id: 3,
@@ -27,6 +29,7 @@ export const products = [
         size: '',
         inCart: false,
         count: 0,
-        total: 0
+        total: 0,
+        ingredientsUsed: [{"cola": 0.25}],
     }
 ];
