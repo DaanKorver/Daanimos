@@ -23,15 +23,18 @@ first time run:
     cd app
     npm install
 
-werken aan de app:
+lauch app aan de app:
 
     cd app
     expo start
     
-to change stying add a new terminal and do after running expo:
+use server
 
-    cd app
-    npm run scss
+    cd Socket
+    npm install
+    node server.js
+    
+    # and then you can open the link that shows in the command line
 
 ## Contributors
 Iedereen die aan het project heeft gewerkt
