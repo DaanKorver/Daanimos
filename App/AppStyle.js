@@ -147,10 +147,10 @@ const styles = StyleSheet.create({
         padding: heightPercentageToDP("2"),
     },
     cartContainer: {
-        flex: 1,
         width: widthPercentageToDP("100") - 46,
+        height: heightPercentageToDP("30"),
         padding: 24,
-        borderBottomWidth: 2
+        borderBottomWidth: 2,
     },
     cartProduct: {
         fontSize: 24,

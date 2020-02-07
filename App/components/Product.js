@@ -14,7 +14,7 @@ class Product extends Component {
                 <View style={styles.product}>
                     <View style={styles.productImageContainer}>                            
                         <Image style={styles.productImage}
-                        source={require(`../assets/Salami.png`)}/>
+                        source={require("../assets/icons/pizza.png")}/>
                     </View>
                     <View style={styles.priceContainer}>
                         <Text style={styles.pizzaName}>{name}</Text>
